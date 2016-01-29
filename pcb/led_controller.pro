@@ -1,4 +1,4 @@
-update=Mon 10 Aug 2015 04:51:42 PM EDT
+update=Mon 10 Aug 2015 11:08:15 AM EDT
 version=1
 last_client=kicad
 [cvpcb]
@@ -13,10 +13,10 @@ version=1
 PageLayoutDescrFile=
 LastNetListRead=led_controller.net
 UseCmpFile=0
-PadDrill=0.889
-PadDrillOvalY=0.889
-PadSizeH=1.524
-PadSizeV=2.032
+PadDrill=3.0988
+PadDrillOvalY=3.0988
+PadSizeH=3.81
+PadSizeV=6.35
 PcbTextSizeV=1.5
 PcbTextSizeH=1.5
 PcbTextThickness=0.3
@@ -25,7 +25,7 @@ ModuleTextSizeH=1
 ModuleTextSizeThickness=0.15
 SolderMaskClearance=0
 SolderMaskMinWidth=0
-DrawSegmentWidth=0.381
+DrawSegmentWidth=0.2
 BoardOutlineThickness=0.2286
 ModuleOutlineThickness=0.381
 [schematic_editor]
