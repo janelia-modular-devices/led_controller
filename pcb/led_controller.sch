@@ -30,6 +30,7 @@ LIBS:contrib
 LIBS:valves
 LIBS:led_controller
 LIBS:components
+LIBS:arduino_current_controller
 LIBS:led_controller-cache
 EELAYER 25 0
 EELAYER END
@@ -72,7 +73,9 @@ $EndComp
 Wire Wire Line
 	1200 1200 1200 1550
 Wire Wire Line
-	1200 1550 1850 1550
+	1200 1550 1350 1550
+Wire Wire Line
+	1350 1550 1850 1550
 Wire Wire Line
 	1350 1200 1350 1550
 Connection ~ 1350 1550
@@ -90,7 +93,9 @@ $EndComp
 Wire Wire Line
 	1850 1650 1350 1650
 Wire Wire Line
-	1350 1650 1350 1800
+	1350 1650 1350 1750
+Wire Wire Line
+	1350 1750 1350 1800
 Wire Wire Line
 	1850 1750 1350 1750
 Connection ~ 1350 1750
@@ -185,14 +190,18 @@ F 3 "" H 5050 950 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	5250 950  5500 950 
+	5250 950  5400 950 
+Wire Wire Line
+	5400 950  5500 950 
 Wire Wire Line
 	5250 950  5250 850 
 Wire Wire Line
 	5400 850  5400 950 
 Connection ~ 5400 950 
 Wire Wire Line
-	5050 1050 5500 1050
+	5050 1050 5400 1050
+Wire Wire Line
+	5400 1050 5500 1050
 Wire Wire Line
 	5050 1050 5050 950 
 Wire Wire Line
@@ -224,7 +233,9 @@ F 3 "" H 1300 6600 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1300 6350 1300 6600
+	1300 6350 1300 6450
+Wire Wire Line
+	1300 6450 1300 6600
 Wire Wire Line
 	900  6450 1300 6450
 Connection ~ 1300 6450
@@ -244,7 +255,9 @@ Wire Wire Line
 Wire Wire Line
 	1300 5900 1000 5900
 Wire Wire Line
-	1000 5850 1000 6350
+	1000 5850 1000 5900
+Wire Wire Line
+	1000 5900 1000 6350
 Wire Wire Line
 	1000 6350 900  6350
 Connection ~ 1000 5900
@@ -288,20 +301,28 @@ F 3 "" H 6800 1450 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	6800 1200 6800 1450
+	6800 1200 6800 1350
+Wire Wire Line
+	6800 1350 6800 1450
 Wire Wire Line
 	6150 1300 6150 1350
 Wire Wire Line
-	6150 1350 7450 1350
+	6150 1350 6800 1350
+Wire Wire Line
+	6800 1350 7450 1350
 Connection ~ 6800 1350
 Wire Wire Line
 	7450 1350 7450 1300
 Wire Wire Line
 	6150 900  6150 850 
 Wire Wire Line
-	6150 850  6400 850 
+	6150 850  6200 850 
 Wire Wire Line
-	7200 850  7700 850 
+	6200 850  6400 850 
+Wire Wire Line
+	7200 850  7450 850 
+Wire Wire Line
+	7450 850  7700 850 
 Wire Wire Line
 	7450 900  7450 850 
 Connection ~ 7450 850 
@@ -322,7 +343,9 @@ F 3 "" H 1350 7700 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	950  7550 1350 7550
+	950  7550 1050 7550
+Wire Wire Line
+	1050 7550 1350 7550
 Wire Wire Line
 	1350 7550 1350 7700
 Wire Wire Line
@@ -341,7 +364,11 @@ F 3 "" H 2000 6850 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	950  7050 2000 7050
+	950  7050 1650 7050
+Wire Wire Line
+	1650 7050 1900 7050
+Wire Wire Line
+	1900 7050 2000 7050
 Wire Wire Line
 	2000 7050 2000 6850
 Wire Wire Line
@@ -355,13 +382,17 @@ Wire Wire Line
 Wire Wire Line
 	1550 7150 1550 7700
 Wire Wire Line
-	1550 7700 1950 7700
+	1550 7700 1650 7700
+Wire Wire Line
+	1650 7700 1950 7700
 Wire Wire Line
 	950  7250 1500 7250
 Wire Wire Line
 	1500 7250 1500 7800
 Wire Wire Line
-	1500 7800 1950 7800
+	1500 7800 1900 7800
+Wire Wire Line
+	1900 7800 1950 7800
 Text Label 1050 7350 0    60   ~ 0
 ENC_BTN
 Text Label 1950 7700 0    60   ~ 0
@@ -420,7 +451,9 @@ $EndComp
 Wire Wire Line
 	3750 7000 3750 7050
 Wire Wire Line
-	3750 6500 3750 6600
+	3750 6500 3750 6550
+Wire Wire Line
+	3750 6550 3750 6600
 Wire Wire Line
 	4050 3250 4250 3250
 Text Label 4250 3250 0    60   ~ 0
@@ -659,7 +692,9 @@ F 3 "" H 4400 3650 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	4050 3700 4650 3700
+	4050 3700 4400 3700
+Wire Wire Line
+	4400 3700 4650 3700
 Wire Wire Line
 	4400 3700 4400 3650
 $Comp
@@ -729,7 +764,9 @@ $EndComp
 Wire Wire Line
 	5600 7000 5600 7050
 Wire Wire Line
-	5600 6500 5600 6600
+	5600 6500 5600 6550
+Wire Wire Line
+	5600 6550 5600 6600
 $Comp
 L 0.1uF C5
 U 1 1 54B955FC
@@ -900,7 +937,9 @@ $EndComp
 Wire Wire Line
 	2800 6300 2950 6300
 Wire Wire Line
-	2950 6300 2950 6450
+	2950 6300 2950 6400
+Wire Wire Line
+	2950 6400 2950 6450
 Wire Wire Line
 	2800 6400 2950 6400
 Connection ~ 2950 6400
@@ -956,4 +995,135 @@ NoConn ~ 4050 4250
 NoConn ~ 4050 4150
 NoConn ~ 4050 4050
 NoConn ~ 4050 3950
+$Comp
+L RCD-24 RCD?
+U 1 1 56B0D8A0
+P 8300 2950
+F 0 "RCD?" H 8300 3303 60  0000 C CNN
+F 1 "RCD-24" H 8300 3197 60  0000 C CNN
+F 2 "led_controller:RCD-24" H 8500 2650 60  0001 C CNN
+F 3 "" H 8600 2750 60  0000 C CNN
+F 4 "digikey" H 8700 2850 60  0001 C CNN "Vendor"
+F 5 "945-1132-ND " H 8800 2950 60  0001 C CNN "PartNumber"
+F 6 "LED SUPPLY CC BUCK 3-31V 1.2A" H 8900 3050 60  0001 C CNN "Description"
+	1    8300 2950
+	1    0    0    -1  
+$EndComp
+$Comp
+L SSR_DC_6PIN U?
+U 1 1 56B0E482
+P 7000 2850
+F 0 "U?" H 7000 3203 60  0000 C CNN
+F 1 "SSR_DC_6PIN" H 7000 3097 60  0000 C CNN
+F 2 "led_controller:ASSR-1611" H 6650 2950 60  0001 C CNN
+F 3 "" H 6750 3050 60  0000 C CNN
+F 4 "digikey" H 6850 3150 60  0001 C CNN "Vendor"
+F 5 "516-2367-5-ND" H 6950 3250 60  0001 C CNN "PartNumber"
+F 6 "RELAY SSR SPST SGL 2.5A 6SMD GW" H 7050 3350 60  0001 C CNN "Description"
+	1    7000 2850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7450 2850 7800 2850
+Text Label 7500 2850 0    60   ~ 0
+IN0+
+$Comp
+L 10uF C?
+U 1 1 56B0E7AF
+P 7600 2400
+F 0 "C?" H 7600 2500 40  0000 L CNN
+F 1 "10uF" H 7606 2315 40  0000 L CNN
+F 2 "led_controller:SM1210" H 7638 2250 30  0001 C CNN
+F 3 "" H 7600 2400 60  0000 C CNN
+F 4 "digikey" H 7700 2600 60  0001 C CNN "Vendor"
+F 5 "445-4536-1-ND" H 7800 2700 60  0001 C CNN "PartNumber"
+F 6 "CAP CER 10UF 50V 10% X7S 1210" H 7900 2800 60  0001 C CNN "Description"
+	1    7600 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 56B0EAA4
+P 7600 2650
+F 0 "#PWR?" H 7600 2400 50  0001 C CNN
+F 1 "GND" H 7608 2476 50  0001 C CNN
+F 2 "" H 7600 2650 50  0000 C CNN
+F 3 "" H 7600 2650 50  0000 C CNN
+	1    7600 2650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7600 2650 7600 2600
+Wire Wire Line
+	7600 2200 7500 2200
+Wire Wire Line
+	7500 2200 7500 2750
+Wire Wire Line
+	7500 2750 7450 2750
+$Comp
+L VAA #PWR?
+U 1 1 56B0EEF5
+P 7500 2200
+F 0 "#PWR?" H 7500 2260 30  0001 C CNN
+F 1 "VAA" H 7500 2310 30  0000 C CNN
+F 2 "" H 7500 2200 60  0000 C CNN
+F 3 "" H 7500 2200 60  0000 C CNN
+	1    7500 2200
+	1    0    0    -1  
+$EndComp
+NoConn ~ 7450 2950
+$Comp
+L GND #PWR?
+U 1 1 56B0F2E1
+P 7750 3100
+F 0 "#PWR?" H 7750 2850 50  0001 C CNN
+F 1 "GND" H 7758 2926 50  0001 C CNN
+F 2 "" H 7750 3100 50  0000 C CNN
+F 3 "" H 7750 3100 50  0000 C CNN
+	1    7750 3100
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 56B0F35A
+P 6450 2950
+F 0 "#PWR?" H 6450 2700 50  0001 C CNN
+F 1 "GND" H 6458 2776 50  0001 C CNN
+F 2 "" H 6450 2950 50  0000 C CNN
+F 3 "" H 6450 2950 50  0000 C CNN
+	1    6450 2950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6550 2850 6450 2850
+Wire Wire Line
+	6450 2850 6450 2950
+Wire Wire Line
+	7800 3050 7750 3050
+Wire Wire Line
+	7750 3050 7750 3100
+Wire Wire Line
+	8350 3200 8350 3250
+Text Label 8350 3250 0    60   ~ 0
+PWM_0
+$Comp
+L 150 R?
+U 1 1 56B118CF
+P 6200 2750
+F 0 "R?" V 6012 2750 40  0000 C CNN
+F 1 "150" V 6090 2750 40  0000 C CNN
+F 2 "led_controller:SM1210" V 6130 2750 30  0001 C CNN
+F 3 "" H 6200 2750 30  0000 C CNN
+F 4 "digikey" V 6380 2850 60  0001 C CNN "Vendor"
+F 5 "P150AACT-ND" V 6480 2950 60  0001 C CNN "PartNumber"
+F 6 "RES SMD 150 OHM 1% 1/2W 1210" V 6580 3050 60  0001 C CNN "Description"
+	1    6200 2750
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	6450 2750 6550 2750
+Wire Wire Line
+	5500 2750 5950 2750
+Text Label 5500 2750 0    60   ~ 0
+ENABLE_0
 $EndSCHEMATC
