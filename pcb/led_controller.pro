@@ -1,4 +1,4 @@
-update=Fri 29 Jan 2016 01:40:42 PM EST
+update=Tue 02 Feb 2016 04:57:03 PM EST
 version=1
 last_client=kicad
 [cvpcb]
@@ -76,4 +76,3 @@ LibName28=contrib
 LibName29=valves
 LibName30=led_controller
 LibName31=/home/polidorop/git/kicad/kicad-libraries/components
-LibName32=/home/polidorop/mercurial/arduino_current_controller/pcb/arduino_current_controller
