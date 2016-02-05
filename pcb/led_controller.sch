@@ -30,7 +30,6 @@ LIBS:contrib
 LIBS:valves
 LIBS:led_controller
 LIBS:components
-LIBS:arduino_current_controller
 LIBS:led_controller-cache
 EELAYER 25 0
 EELAYER END
@@ -126,9 +125,6 @@ NoConn ~ 4050 1350
 NoConn ~ 4050 1950
 NoConn ~ 4050 2050
 NoConn ~ 4050 2150
-NoConn ~ 4050 2450
-NoConn ~ 4050 2550
-NoConn ~ 4050 2950
 NoConn ~ 4050 3800
 NoConn ~ 4050 4550
 NoConn ~ 4050 4650
@@ -1584,4 +1580,50 @@ Wire Wire Line
 	1850 2050 1500 2050
 Text Label 1500 2050 0    60   ~ 0
 BNC_A
+$Comp
+L HEADER_01X03_SMD_RA P?
+U 1 1 56B52A00
+P 650 4250
+F 0 "P?" H 650 4050 50  0000 C CNN
+F 1 "HEADER_01X03_SMD_RA" V 750 4250 50  0000 C CNN
+F 2 "led_controller:Header_3_Pin_SMD_RA" H 550 4350 60  0001 C CNN
+F 3 "" H 650 4450 60  0000 C CNN
+F 4 "digikey" H 750 4550 60  0001 C CNN "Vendor"
+F 5 "A100890CT-ND" H 850 4650 60  0001 C CNN "PartNumber"
+F 6 "CONN HEADER 3POS R/A SMD GOLD" H 950 4750 60  0001 C CNN "Description"
+	1    650  4250
+	-1   0    0    1   
+$EndComp
+NoConn ~ 4050 2950
+Wire Wire Line
+	4050 2550 4250 2550
+Wire Wire Line
+	4050 2450 4250 2450
+Text Label 4250 2550 0    60   ~ 0
+RX0
+Text Label 4250 2450 0    60   ~ 0
+TX0
+Wire Wire Line
+	850  4350 900  4350
+Text Label 900  4350 0    60   ~ 0
+RX0
+Wire Wire Line
+	850  4150 900  4150
+Text Label 900  4150 0    60   ~ 0
+TX0
+$Comp
+L GND #PWR?
+U 1 1 56B53CBC
+P 1100 4350
+F 0 "#PWR?" H 1100 4100 60  0001 C CNN
+F 1 "GND" H 1100 4200 60  0000 C CNN
+F 2 "" H 1100 4350 60  0000 C CNN
+F 3 "" H 1100 4350 60  0000 C CNN
+	1    1100 4350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	850  4250 1100 4250
+Wire Wire Line
+	1100 4250 1100 4350
 $EndSCHEMATC
