@@ -1,4 +1,4 @@
-Cmp-Mod V01 Created by PcbNew   date = Mon 10 Aug 2015 01:34:30 PM EDT
+Cmp-Mod V01 Created by PcbNew   date = Mon 08 Feb 2016 10:02:00 AM EST
 
 BeginCmp
 TimeStamp = 54B9B559
@@ -34,9 +34,9 @@ EndCmp
 
 BeginCmp
 TimeStamp = 5488C5FC
-Path = /5489443F
+Path = /56B14635
 Reference = R4;
-ValeurCmp = 5.11k;
+ValeurCmp = 150;
 IdModule  = led_controller:SM1210;
 EndCmp
 
@@ -58,7 +58,7 @@ EndCmp
 
 BeginCmp
 TimeStamp = 5480C99F
-Path = /54892AC2
+Path = /56B0E7AF
 Reference = C6;
 ValeurCmp = 10uF;
 IdModule  = led_controller:SM1210;
@@ -122,9 +122,9 @@ EndCmp
 
 BeginCmp
 TimeStamp = 54AF04BB
-Path = /54B44545
+Path = /56B1504C
 Reference = R5;
-ValeurCmp = 5.11k;
+ValeurCmp = 150;
 IdModule  = led_controller:SM1210;
 EndCmp
 
@@ -137,51 +137,11 @@ IdModule  = led_controller:ARDUINO_MEGA_SHIELD;
 EndCmp
 
 BeginCmp
-TimeStamp = 5480C9D7
-Path = /54890F29
-Reference = J1;
-ValeurCmp = DB15FV;
-IdModule  = led_controller:DB15FD;
-EndCmp
-
-BeginCmp
-TimeStamp = 5480C9F0
-Path = /548910B3
-Reference = J2;
-ValeurCmp = DB15FV;
-IdModule  = led_controller:DB15FD;
-EndCmp
-
-BeginCmp
 TimeStamp = 54B448E0
-Path = /54892B53
+Path = /56B14609
 Reference = C7;
 ValeurCmp = 10uF;
 IdModule  = led_controller:SM1210;
-EndCmp
-
-BeginCmp
-TimeStamp = 54B44905
-Path = /54B43ADD
-Reference = J3;
-ValeurCmp = DB15FV;
-IdModule  = led_controller:DB15FD;
-EndCmp
-
-BeginCmp
-TimeStamp = 54B58ADE
-Path = /54B9D7EF
-Reference = P4;
-ValeurCmp = HEADER_01X03_SHR;
-IdModule  = led_controller:Header_Shrouded_3_Pin;
-EndCmp
-
-BeginCmp
-TimeStamp = 54B58AEF
-Path = /54B9D9D9
-Reference = P5;
-ValeurCmp = HEADER_01X03_SHR;
-IdModule  = led_controller:Header_Shrouded_3_Pin;
 EndCmp
 
 BeginCmp
@@ -194,7 +154,7 @@ EndCmp
 
 BeginCmp
 TimeStamp = 54B96FF2
-Path = /54B4453C
+Path = /56B15020
 Reference = C8;
 ValeurCmp = 10uF;
 IdModule  = led_controller:SM1210;
@@ -206,14 +166,6 @@ Path = /54BEC0BB
 Reference = S1;
 ValeurCmp = HEADER_01X02_SHR;
 IdModule  = led_controller:Header_Shrouded_2_Pin;
-EndCmp
-
-BeginCmp
-TimeStamp = 54EB8E55
-Path = /54B9DA07
-Reference = P6;
-ValeurCmp = HEADER_01X03_SHR;
-IdModule  = led_controller:Header_Shrouded_3_Pin;
 EndCmp
 
 BeginCmp
@@ -242,10 +194,130 @@ EndCmp
 
 BeginCmp
 TimeStamp = 5488C999
-Path = /54894188
+Path = /56B118CF
 Reference = R3;
-ValeurCmp = 5.11k;
+ValeurCmp = 150;
 IdModule  = led_controller:SM1210;
+EndCmp
+
+BeginCmp
+TimeStamp = 56B12807
+Path = /56B15079
+Reference = C9;
+ValeurCmp = 10uF;
+IdModule  = led_controller:SM1210;
+EndCmp
+
+BeginCmp
+TimeStamp = 56B12813
+Path = /56B150A5
+Reference = R6;
+ValeurCmp = 150;
+IdModule  = led_controller:SM1210;
+EndCmp
+
+BeginCmp
+TimeStamp = 56B12855
+Path = /56B12908
+Reference = T1;
+ValeurCmp = TERM_BLK_ANG_2_PIN;
+IdModule  = led_controller:TERM_BLK_ANG_2_PIN;
+EndCmp
+
+BeginCmp
+TimeStamp = 56B1285F
+Path = /56B14641
+Reference = T2;
+ValeurCmp = TERM_BLK_ANG_2_PIN;
+IdModule  = led_controller:TERM_BLK_ANG_2_PIN;
+EndCmp
+
+BeginCmp
+TimeStamp = 56B12869
+Path = /56B15058
+Reference = T3;
+ValeurCmp = TERM_BLK_ANG_2_PIN;
+IdModule  = led_controller:TERM_BLK_ANG_2_PIN;
+EndCmp
+
+BeginCmp
+TimeStamp = 56B12873
+Path = /56B150B1
+Reference = T4;
+ValeurCmp = TERM_BLK_ANG_2_PIN;
+IdModule  = led_controller:TERM_BLK_ANG_2_PIN;
+EndCmp
+
+BeginCmp
+TimeStamp = 56B1284B
+Path = /56B15065
+Reference = RCD4;
+ValeurCmp = RCD-24;
+IdModule  = led_controller:RCD-24;
+EndCmp
+
+BeginCmp
+TimeStamp = 56B1283D
+Path = /56B1500C
+Reference = RCD3;
+ValeurCmp = RCD-24;
+IdModule  = led_controller:RCD-24;
+EndCmp
+
+BeginCmp
+TimeStamp = 56B1282F
+Path = /56B145F5
+Reference = RCD2;
+ValeurCmp = RCD-24;
+IdModule  = led_controller:RCD-24;
+EndCmp
+
+BeginCmp
+TimeStamp = 56B12821
+Path = /56B0D8A0
+Reference = RCD1;
+ValeurCmp = RCD-24;
+IdModule  = led_controller:RCD-24;
+EndCmp
+
+BeginCmp
+TimeStamp = 56B12882
+Path = /56B0E482
+Reference = U3;
+ValeurCmp = SSR_DC_6PIN;
+IdModule  = led_controller:ASSR-1611;
+EndCmp
+
+BeginCmp
+TimeStamp = 56B12891
+Path = /56B145FE
+Reference = U4;
+ValeurCmp = SSR_DC_6PIN;
+IdModule  = led_controller:ASSR-1611;
+EndCmp
+
+BeginCmp
+TimeStamp = 56B128A0
+Path = /56B15015
+Reference = U5;
+ValeurCmp = SSR_DC_6PIN;
+IdModule  = led_controller:ASSR-1611;
+EndCmp
+
+BeginCmp
+TimeStamp = 56B128AF
+Path = /56B1506E
+Reference = U6;
+ValeurCmp = SSR_DC_6PIN;
+IdModule  = led_controller:ASSR-1611;
+EndCmp
+
+BeginCmp
+TimeStamp = 56B513B2
+Path = /56B52A00
+Reference = P4;
+ValeurCmp = HEADER_01X03_SMD_RA;
+IdModule  = led_controller:Header_3_Pin_SMD_RA;
 EndCmp
 
 EndListe

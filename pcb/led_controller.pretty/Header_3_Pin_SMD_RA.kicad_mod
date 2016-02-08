@@ -1,5 +1,5 @@
-(module Header_3_Pin_SMD_RA (layer F.Cu) (tedit 56B3B8D5)
-  (fp_text reference Header_3_Pin_SMD_RA (at -8.89 0 90) (layer F.SilkS)
+(module Header_3_Pin_SMD_RA (layer F.Cu) (tedit 56B8ADDD)
+  (fp_text reference Header_3_Pin_SMD_RA (at 7.62 5.715 270) (layer F.SilkS)
     (effects (font (size 1.016 1.016) (thickness 0.254)))
   )
   (fp_text value VAL** (at 0.635 -3.81) (layer F.SilkS) hide
