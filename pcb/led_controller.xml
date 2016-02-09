@@ -2,7 +2,7 @@
 <export version="D">
   <design>
     <source>/home/polidorop/git/modular-devices/led_controller/pcb/led_controller.sch</source>
-    <date>Tue 09 Feb 2016 11:15:12 AM EST</date>
+    <date>Tue 09 Feb 2016 11:22:29 AM EST</date>
     <tool>Eeschema 0.201601280801+6517~42~ubuntu14.04.1-product</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -906,7 +906,7 @@
         <field name="Value">RCD-24</field>
         <field name="Footprint">led_controller:RCD-24</field>
         <field name="Vendor">digikey</field>
-        <field name="PartNumber">945-1132-ND </field>
+        <field name="PartNumber">945-1132-ND</field>
         <field name="Description">LED SUPPLY CC BUCK 3-31V 1.2A</field>
       </fields>
       <pins>
