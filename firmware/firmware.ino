@@ -10,8 +10,8 @@
 #include "MemoryFree.h"
 #include "ConstantVariable.h"
 #include "SavedVariable.h"
-#include "ModularServer.h"
 #include "BetterMap.h"
+#include "ModularServer.h"
 #include "NewhavenDisplay.h"
 #include "Encoder.h"
 #include "StandaloneInterface.h"
@@ -21,7 +21,6 @@
 #include "Controller.h"
 
 #include "IndexedContainer.h"
-#include "FilterSmooth.h"
 
 
 // See README.md for more information

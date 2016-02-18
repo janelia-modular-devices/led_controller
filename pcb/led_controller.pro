@@ -1,4 +1,4 @@
-update=Tue 02 Feb 2016 04:57:03 PM EST
+update=Thu 18 Feb 2016 11:01:03 AM EST
 version=1
 last_client=kicad
 [cvpcb]
@@ -28,19 +28,6 @@ SolderMaskMinWidth=0
 DrawSegmentWidth=0.2
 BoardOutlineThickness=0.2286
 ModuleOutlineThickness=0.381
-[schematic_editor]
-version=1
-PageLayoutDescrFile=
-PlotDirectoryName=schematic/
-SubpartIdSeparator=0
-SubpartFirstId=65
-NetFmtName=
-SpiceForceRefPrefix=0
-SpiceUseNetNumbers=0
-RptD_X=0
-RptD_Y=100
-RptLab=1
-LabSize=60
 [eeschema]
 version=1
 LibDir=
@@ -76,3 +63,14 @@ LibName28=contrib
 LibName29=valves
 LibName30=led_controller
 LibName31=/home/polidorop/git/kicad/kicad-libraries/components
+[schematic_editor]
+version=1
+PageLayoutDescrFile=
+PlotDirectoryName=schematic/
+SubpartIdSeparator=0
+SubpartFirstId=65
+NetFmtName=
+SpiceForceRefPrefix=0
+SpiceUseNetNumbers=0
+LabSize=60
+ERC_TestSimilarLabels=1

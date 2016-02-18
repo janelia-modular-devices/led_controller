@@ -14,108 +14,114 @@
 #include "Constants.h"
 #include "Controller.h"
 
+#include "Streaming.h"
 
 namespace callbacks
 {
-struct SetUntilInfo
-{
-  uint32_t channels;
-  uint8_t ain;
-  int ain_value_goal;
-  bool complete;
-  EventController::EventId event_id;
-};
+// struct PulseInfo
+// {
+//   EventController::EventIdPair event_id_pair;
+//   int channel_index;
+// };
 
-struct SetForInfo
-{
-  uint32_t channels;
-  bool complete;
-  EventController::EventIdPair event_id_pair;
-};
+// void getLedsPoweredCallback();
 
-void getLedsPoweredCallback();
+void setChannelOnCallback();
 
-void getAnalogInputsCallback();
+void setChannelOffCallback();
 
-void getAnalogInputsFilteredCallback();
+// void setChannelsOnCallback();
 
-void setChannelsOnCallback();
+// void setChannelsOffCallback();
 
-void setChannelsOffCallback();
+// void toggleChannelCallback();
 
-void toggleChannelsCallback();
+// void toggleChannelsCallback();
 
-void toggleAllChannelsCallback();
+// void toggleAllChannelsCallback();
 
-void setAllChannelsOnCallback();
+// void setAllChannelsOnCallback();
 
-void setAllChannelsOffCallback();
+// void setAllChannelsOffCallback();
 
-void setChannelsOnAllOthersOffCallback();
+// void setChannelOnAllOthersOffCallback();
 
-void setChannelsOffAllOthersOnCallback();
+// void setChannelOffAllOthersOnCallback();
 
-void getChannelsOnCallback();
+// void setChannelsOnAllOthersOffCallback();
 
-void getChannelsOffCallback();
+// void setChannelsOffAllOthersOnCallback();
 
-void getChannelCountCallback();
+// void getChannelsOnCallback();
 
-void saveStateCallback();
+// void getChannelsOffCallback();
 
-void recallStateCallback();
+// void getChannelCountCallback();
 
-void getSavedStatesCallback();
+// void saveStateCallback();
 
-void setChannelsOnUntilCallback();
+// void recallStateCallback();
 
-void setChannelsOffUntilCallback();
+// void getSavedStatesCallback();
 
-void areAllSetUntilsCompleteCallback();
+// void addPulseCenteredCallback();
 
-void removeAllSetUntilsCallback();
+// void addPwmPeriodOnDurationCallback();
 
-void setChannelsOnForCallback();
+// void addPwmFrequencyDutyCycleCallback();
 
-void setChannelsOffForCallback();
+// void addSpikeAndHoldCallback();
 
-void areAllSetForsCompleteCallback();
+// void stopAllPulsesCallback();
 
-void removeAllSetForsCallback();
+// void startPwmPeriodOnDurationCallback();
 
-uint32_t arrayToChannels(ArduinoJson::JsonArray& channels_array);
+// void startPwmFrequencyDutyCycleCallback();
+
+// void startSpikeAndHoldCallback();
+
+// void stopPulseWaveCallback();
+
+// uint32_t arrayToChannels(ArduinoJson::JsonArray& channels_array);
+
+// PulseInfo spikeAndHold(int index,
+//                        uint32_t delay,
+//                        uint32_t spike_duty_cycle,
+//                        uint32_t spike_duration,
+//                        uint32_t hold_duty_cycle,
+//                        long hold_duration);
 
 // Standalone Callbacks
-void executeStandaloneCallbackCallback();
+// void executeStandaloneCallbackCallback();
 
-void toggleChannelStandaloneCallback();
+void setChannelPowerStandaloneCallback();
 
-void saveStateStandaloneCallback();
+// void saveStateStandaloneCallback();
 
-void recallStateStandaloneCallback();
+// void recallStateStandaloneCallback();
+
+// void pwmStandaloneCallback();
+
+// void spikeHoldStandaloneCallback();
 
 // EventController Callbacks
-// void removeIndexedSetUntilCallback(int index);
+// void removeIndexedChannelCallback(int index);
 
-void setChannelsOnUntilEventCallback(int index);
+// void setChannelsOnEventCallback(int index);
 
-void setChannelsOffUntilEventCallback(int index);
+// void setChannelsOffEventCallback(int index);
 
-void setChannelsOnForEventCallback(int index);
+//Interactive Variable Update Callbacks
+// void periodUpdateCallback();
 
-void setChannelsOffForEventCallback(int index);
+// void onUpdateCallback();
 
-void completeForEventCallback(int index);
+// void countUpdateCallback();
 
-void setChannelsOffWhenGreaterThanEventCallback(int index);
+// void frequencyUpdateCallback();
 
-void setChannelsOffWhenLessThanEventCallback(int index);
+// void pwmDutyUpdateCallback();
 
-void setChannelsOnWhenGreaterThanEventCallback(int index);
-
-void setChannelsOnWhenLessThanEventCallback(int index);
-
-void updateFilterBlockCallback(int index);
-
+// void pwmDurUpdateCallback();
 }
 #endif
