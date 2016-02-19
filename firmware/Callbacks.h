@@ -18,110 +18,60 @@
 
 namespace callbacks
 {
-// struct PulseInfo
-// {
-//   EventController::EventIdPair event_id_pair;
-//   int channel_index;
-// };
+struct PulseInfo
+{
+  EventController::EventIdPair event_id_pair;
+  int channel_index;
+};
 
-// void getLedsPoweredCallback();
-
-void setChannelOnCallback();
+void setChannelPowerCallback();
 
 void setChannelOffCallback();
 
-// void setChannelsOnCallback();
+void setChannelsPowersCallback();
 
-// void setChannelsOffCallback();
+void setChannelsOffCallback();
 
-// void toggleChannelCallback();
+void setAllChannelsPowerCallback();
 
-// void toggleChannelsCallback();
+void setAllChannelsOffCallback();
 
-// void toggleAllChannelsCallback();
+void getChannelsPowersCallback();
 
-// void setAllChannelsOnCallback();
+void getChannelCountCallback();
 
-// void setAllChannelsOffCallback();
+void addPwmPeriodOnDurationCallback();
 
-// void setChannelOnAllOthersOffCallback();
+void addPwmFrequencyDutyCycleCallback();
 
-// void setChannelOffAllOthersOnCallback();
+void stopAllPulsesCallback();
 
-// void setChannelsOnAllOthersOffCallback();
+void startPwmPeriodOnDurationCallback();
 
-// void setChannelsOffAllOthersOnCallback();
+void startPwmFrequencyDutyCycleCallback();
 
-// void getChannelsOnCallback();
+void stopPulseWaveCallback();
 
-// void getChannelsOffCallback();
+uint32_t arrayToChannels(ArduinoJson::JsonArray& channels_array);
 
-// void getChannelCountCallback();
-
-// void saveStateCallback();
-
-// void recallStateCallback();
-
-// void getSavedStatesCallback();
-
-// void addPulseCenteredCallback();
-
-// void addPwmPeriodOnDurationCallback();
-
-// void addPwmFrequencyDutyCycleCallback();
-
-// void addSpikeAndHoldCallback();
-
-// void stopAllPulsesCallback();
-
-// void startPwmPeriodOnDurationCallback();
-
-// void startPwmFrequencyDutyCycleCallback();
-
-// void startSpikeAndHoldCallback();
-
-// void stopPulseWaveCallback();
-
-// uint32_t arrayToChannels(ArduinoJson::JsonArray& channels_array);
-
-// PulseInfo spikeAndHold(int index,
-//                        uint32_t delay,
-//                        uint32_t spike_duty_cycle,
-//                        uint32_t spike_duration,
-//                        uint32_t hold_duty_cycle,
-//                        long hold_duration);
 
 // Standalone Callbacks
-// void executeStandaloneCallbackCallback();
-
 void setChannelPowerStandaloneCallback();
 
-// void saveStateStandaloneCallback();
+void setChannelOffStandaloneCallback();
 
-// void recallStateStandaloneCallback();
+void setAllChannelsPowerStandaloneCallback();
 
-// void pwmStandaloneCallback();
-
-// void spikeHoldStandaloneCallback();
+void pwmStandaloneCallback();
 
 // EventController Callbacks
-// void removeIndexedChannelCallback(int index);
+void removeIndexedChannelCallback(int index);
 
-// void setChannelsOnEventCallback(int index);
+void setChannelsOnEventCallback(int index);
 
-// void setChannelsOffEventCallback(int index);
+void setChannelsOffEventCallback(int index);
 
 //Interactive Variable Update Callbacks
-// void periodUpdateCallback();
 
-// void onUpdateCallback();
-
-// void countUpdateCallback();
-
-// void frequencyUpdateCallback();
-
-// void pwmDutyUpdateCallback();
-
-// void pwmDurUpdateCallback();
 }
 #endif

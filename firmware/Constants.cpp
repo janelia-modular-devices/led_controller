@@ -33,9 +33,9 @@ const int standalone_update_period = 300;
 const int pwm_pins[CHANNEL_COUNT] = {10,9,8,7};
 const int enable_pins[CHANNEL_COUNT] = {52,50,48,46};
 
-const int power_min = 0;
-const int power_max = 100;
-const int display_power_default = 50;
+const uint8_t power_min = 0;
+const uint8_t power_max = 100;
+const uint8_t display_power_default = 50;
 
 const int analog_out_min = 0;
 const int analog_out_max = 255;
@@ -48,9 +48,6 @@ const float frequency_max = 500.0;
 
 const uint8_t duty_cycle_min = 1;
 const uint8_t duty_cycle_max = 99;
-const uint8_t display_duty_cycle_default = 50;
-
-const uint32_t states_array_default[STATE_COUNT] = {0};
 
 const uint8_t dsp_lbl_display_position = 48;
 const uint8_t int_var_display_position = 51;
@@ -60,22 +57,16 @@ const uint8_t int_var_display_position_2 = 71;
 
 const uint8_t inc_dsp_lbl_display_position = 11;
 const uint8_t inc_int_var_display_position = 15;
-const uint8_t c_dsp_lbl_display_position = 37;
-const uint8_t c_int_var_display_position = 38;
+const uint8_t c_dsp_lbl_display_position = 32;
+const uint8_t c_int_var_display_position = 37;
 
 const uint8_t period_dsp_lbl_display_position = 20;
 const uint8_t on_dsp_lbl_display_position = 40;
 const uint8_t count_dsp_lbl_display_position = 60;
-const uint8_t frequency_dsp_lbl_display_position = 29;
-const uint8_t pwm_duty_dsp_lbl_display_position = 49;
-const uint8_t pwm_dur_dsp_lbl_display_position = 71;
 
-const uint8_t period_int_var_display_position = 24;
-const uint8_t on_int_var_display_position = 44;
-const uint8_t count_int_var_display_position = 64;
-const uint8_t frequency_int_var_display_position = 33;
-const uint8_t pwm_duty_int_var_display_position = 53;
-const uint8_t pwm_dur_int_var_display_position = 75;
+const uint8_t period_int_var_display_position = 27;
+const uint8_t on_int_var_display_position = 47;
+const uint8_t count_int_var_display_position = 67;
 
 const int display_period_min = 2;
 const int display_period_max = 1000;
@@ -84,30 +75,22 @@ const int display_on_min = 1;
 const int display_on_max = display_period_max-1;
 const int display_on_default = display_period_default/2;
 const int display_count_min = 1;
-const int display_count_max = 32767;
+const int display_count_max = 1000;
 const int display_count_default = 10;
-const int display_frequency_min = 1;
-const int display_frequency_max = 500;
-const int display_frequency_default = 10;
-const int display_dur_max = 0x7FFF;
-const int display_dur_default = 1000;
 
 CONSTANT_STRING(inc_dsp_lbl_str,"inc");
-CONSTANT_STRING(c_dsp_lbl_str,"c");
+CONSTANT_STRING(c_dsp_lbl_str,"chnl");
 
-CONSTANT_STRING(period_dsp_lbl_str,"per");
-CONSTANT_STRING(on_dsp_lbl_str,"on");
-CONSTANT_STRING(count_dsp_lbl_str,"cnt");
-CONSTANT_STRING(frequency_dsp_lbl_str,"frq");
-
-CONSTANT_STRING(duty_dsp_lbl_str,"dc%");
-CONSTANT_STRING(dur_dsp_lbl_str,"dur");
+CONSTANT_STRING(period_dsp_lbl_str,"period");
+CONSTANT_STRING(on_dsp_lbl_str,"on_dur");
+CONSTANT_STRING(count_dsp_lbl_str,"count");
 
 CONSTANT_STRING(device_name,"led_controller");
 
 CONSTANT_STRING(duration_units_name,"ms");
 CONSTANT_STRING(frequency_units_name,"Hz");
 CONSTANT_STRING(duty_cycle_units_name,"%");
+CONSTANT_STRING(power_units_name,"%");
 
 CONSTANT_STRING(channels_parameter_name,"channels");
 CONSTANT_STRING(channel_parameter_name,"channel");
@@ -123,20 +106,14 @@ CONSTANT_STRING(duty_cycle_parameter_name,"duty_cycle");
 CONSTANT_STRING(pwm_duration_parameter_name,"pwm_duration");
 CONSTANT_STRING(pulse_wave_index_parameter_name,"pulse_wave_index");
 
-CONSTANT_STRING(execute_standalone_callback_method_name,"executeStandaloneCallback");
 CONSTANT_STRING(set_channel_power_method_name,"setChannelPower");
 CONSTANT_STRING(set_channel_off_method_name,"setChannelOff");
-CONSTANT_STRING(set_channels_on_method_name,"setChannelsOn");
+CONSTANT_STRING(set_channels_powers_method_name,"setChannelsPowers");
 CONSTANT_STRING(set_channels_off_method_name,"setChannelsOff");
-CONSTANT_STRING(set_all_channels_on_method_name,"setAllChannelsOn");
+CONSTANT_STRING(set_all_channels_power_method_name,"setAllChannelsPower");
 CONSTANT_STRING(set_all_channels_off_method_name,"setAllChannelsOff");
-CONSTANT_STRING(get_channels_on_method_name,"getChannelsOn");
-CONSTANT_STRING(get_channels_off_method_name,"getChannelsOff");
+CONSTANT_STRING(get_channels_powers_method_name,"getChannelsPowers");
 CONSTANT_STRING(get_channel_count_method_name,"getChannelCount");
-CONSTANT_STRING(save_state_method_name,"saveState");
-CONSTANT_STRING(recall_state_method_name,"recallState");
-CONSTANT_STRING(get_saved_states_method_name,"getSavedStates");
-CONSTANT_STRING(add_pulse_centered_method_name,"addPulseCentered");
 CONSTANT_STRING(add_pwm_period_on_duration_method_name,"addPwmPeriodOnDuration");
 CONSTANT_STRING(add_pwm_frequency_duty_cycle_method_name,"addPwmFrequencyDutyCycle");
 CONSTANT_STRING(stop_all_pulses_method_name,"stopAllPulses");
@@ -144,16 +121,13 @@ CONSTANT_STRING(start_pwm_period_on_duration_method_name,"startPwmPeriodOnDurati
 CONSTANT_STRING(start_pwm_frequency_duty_cycle_method_name,"startPwmFrequencyDutyCycle");
 CONSTANT_STRING(stop_pulse_wave_method_name,"stopPulseWave");
 
-CONSTANT_STRING(pwm_state_method_name,"pwm");
-CONSTANT_STRING(states_name,"states");
+CONSTANT_STRING(pwm_method_name,"pwm");
 const ConstantString frame_name_array[] =
   {
     set_channel_power_method_name,
     set_channel_off_method_name,
-    set_all_channels_on_method_name,
+    set_all_channels_power_method_name,
     set_all_channels_off_method_name,
-    save_state_method_name,
-    recall_state_method_name,
-    pwm_state_method_name,
+    pwm_method_name,
   };
 }

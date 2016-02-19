@@ -22,32 +22,22 @@ public:
   void update();
   ModularDevice::ModularServer& getModularServer();
 
-  // void executeStandaloneCallback();
-  void enableChannel(int channel);
-  void disableChannel(int channel);
-  void setChannelPower(int channel, int power);
-  void setChannelOff(int channel);
-  // void saveState(int state);
-  // void recallState(int state);
-  // void getStatesArray(uint32_t states_array[]);
+  void enableChannel(uint8_t channel);
+  void disableChannel(uint8_t channel);
+  void setChannelPower(uint8_t channel, uint8_t power);
+  void setChannelOff(uint8_t channel);
+  uint8_t getChannelPower(uint8_t channel);
   uint8_t getChannelIntVar();
   uint8_t getPowerIntVar();
-  // uint8_t getStateIntVar();
-  // uint8_t getCIntVar();
-  // int getPeriodIntVar();
-  // void setPeriodIntVar(int value);
-  // int getOnIntVar();
-  // void setOnIntVar(int value);
-  // void setOnIntVarMax(int value);
-  // int getCountIntVar();
-  // void setCountIntVar(int value);
-  // void setCountIntVarMax(int value);
-  // int getFrequencyIntVar();
-  // void setFrequencyIntVar(int value);
-  // int getPwmDutyIntVar();
-  // void setPwmDutyIntVar(int value);
-  // int getPwmDurIntVar();
-  // void setPwmDurIntVar(int value);
+  uint8_t getCIntVar();
+  int getPeriodIntVar();
+  void setPeriodIntVar(int value);
+  int getOnIntVar();
+  void setOnIntVar(int value);
+  void setOnIntVarMax(int value);
+  int getCountIntVar();
+  void setCountIntVar(int value);
+  void setCountIntVarMax(int value);
 private:
   ModularDevice::ModularServer modular_server_;
   SavedVariable saved_variables_[constants::SAVED_VARIABLE_COUNT_MAX];
@@ -61,18 +51,13 @@ private:
 
   Standalone::InteractiveVariable *channel_int_var_ptr_;
   Standalone::InteractiveVariable *power_int_var_ptr_;
-  // Standalone::InteractiveVariable *state_int_var_ptr_;
-  // Standalone::InteractiveVariable *c_int_var_ptr_;
 
-  // Standalone::InteractiveVariable *period_int_var_ptr_;
-  // Standalone::InteractiveVariable *on_int_var_ptr_;
-  // Standalone::InteractiveVariable *count_int_var_ptr_;
-  // Standalone::InteractiveVariable *frequency_int_var_ptr_;
-  // Standalone::InteractiveVariable *pwm_duty_int_var_ptr_;
-  // Standalone::InteractiveVariable *pwm_dur_int_var_ptr_;
+  Standalone::InteractiveVariable *c_int_var_ptr_;
+  Standalone::InteractiveVariable *period_int_var_ptr_;
+  Standalone::InteractiveVariable *on_int_var_ptr_;
+  Standalone::InteractiveVariable *count_int_var_ptr_;
 
-  // uint32_t states_array_[constants::STATE_COUNT];
-
+  uint8_t powers_[constants::CHANNEL_COUNT];
 };
 
 extern Controller controller;
