@@ -35,7 +35,6 @@ const int enable_pins[CHANNEL_COUNT] = {52,50,48,46};
 
 const uint8_t power_min = 0;
 const uint8_t power_max = 100;
-const uint8_t display_power_default = 50;
 
 const int analog_out_min = 0;
 const int analog_out_max = 255;
@@ -49,6 +48,8 @@ const float frequency_max = 500.0;
 const uint8_t duty_cycle_min = 1;
 const uint8_t duty_cycle_max = 99;
 
+const int delay = 100;
+
 const uint8_t dsp_lbl_display_position = 48;
 const uint8_t int_var_display_position = 51;
 
@@ -57,8 +58,10 @@ const uint8_t int_var_display_position_2 = 71;
 
 const uint8_t inc_dsp_lbl_display_position = 11;
 const uint8_t inc_int_var_display_position = 15;
-const uint8_t c_dsp_lbl_display_position = 32;
-const uint8_t c_int_var_display_position = 37;
+const uint8_t chnl_dsp_lbl_display_position = 33;
+const uint8_t chnl_int_var_display_position = 38;
+const uint8_t pwr_dsp_lbl_display_position = 53;
+const uint8_t pwr_int_var_display_position = 57;
 
 const uint8_t period_dsp_lbl_display_position = 20;
 const uint8_t on_dsp_lbl_display_position = 40;
@@ -68,18 +71,21 @@ const uint8_t period_int_var_display_position = 27;
 const uint8_t on_int_var_display_position = 47;
 const uint8_t count_int_var_display_position = 67;
 
-const int display_period_min = 2;
-const int display_period_max = 1000;
-const int display_period_default = 100;
-const int display_on_min = 1;
-const int display_on_max = display_period_max-1;
-const int display_on_default = display_period_default/2;
-const int display_count_min = 1;
-const int display_count_max = 1000;
-const int display_count_default = 10;
+const int inc_width_max = 5;
+const long display_period_min = 2;
+const long display_period_max = 100000;
+const long display_period_default = 1000;
+const long display_on_min = 1;
+const long display_on_max = display_period_max-1;
+const long display_on_default = display_period_default/2;
+const long display_count_min = 1;
+const long display_count_max = 1000;
+const long display_count_default = 10;
+const long display_power_default = 50;
 
 CONSTANT_STRING(inc_dsp_lbl_str,"inc");
-CONSTANT_STRING(c_dsp_lbl_str,"chnl");
+CONSTANT_STRING(chnl_dsp_lbl_str,"chnl");
+CONSTANT_STRING(pwr_dsp_lbl_str,"pwr");
 
 CONSTANT_STRING(period_dsp_lbl_str,"period");
 CONSTANT_STRING(on_dsp_lbl_str,"on_dur");
@@ -97,7 +103,6 @@ CONSTANT_STRING(channel_parameter_name,"channel");
 CONSTANT_STRING(power_parameter_name,"power");
 CONSTANT_STRING(powers_parameter_name,"powers");
 CONSTANT_STRING(state_parameter_name,"state");
-CONSTANT_STRING(delay_parameter_name,"delay");
 CONSTANT_STRING(on_duration_parameter_name,"on_duration");
 CONSTANT_STRING(period_parameter_name,"period");
 CONSTANT_STRING(count_parameter_name,"count");
@@ -129,5 +134,6 @@ const ConstantString frame_name_array[] =
     set_all_channels_power_method_name,
     set_all_channels_off_method_name,
     pwm_method_name,
+    stop_all_pulses_method_name,
   };
 }

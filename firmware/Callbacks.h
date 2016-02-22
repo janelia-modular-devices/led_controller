@@ -18,6 +18,12 @@
 
 namespace callbacks
 {
+struct ChannelsPower
+{
+  uint32_t channels;
+  uint8_t power;
+};
+
 struct PulseInfo
 {
   EventController::EventIdPair event_id_pair;

@@ -61,10 +61,6 @@ void Controller::setup()
   powers_parameter.setTypeArray();
   powers_parameter.setRange(constants::power_min,constants::power_max);
 
-  ModularDevice::Parameter& delay_parameter = modular_server_.createParameter(constants::delay_parameter_name);
-  delay_parameter.setRange(constants::duration_min,constants::duration_max);
-  delay_parameter.setUnits(constants::duration_units_name);
-
   ModularDevice::Parameter& on_duration_parameter = modular_server_.createParameter(constants::on_duration_parameter_name);
   on_duration_parameter.setRange(constants::duration_min,constants::duration_max);
   on_duration_parameter.setUnits(constants::duration_units_name);
@@ -127,7 +123,7 @@ void Controller::setup()
   ModularDevice::Method& add_pwm_period_on_duration_method = modular_server_.createMethod(constants::add_pwm_period_on_duration_method_name);
   add_pwm_period_on_duration_method.attachCallback(callbacks::addPwmPeriodOnDurationCallback);
   add_pwm_period_on_duration_method.addParameter(channels_parameter);
-  add_pwm_period_on_duration_method.addParameter(delay_parameter);
+  add_pwm_period_on_duration_method.addParameter(power_parameter);
   add_pwm_period_on_duration_method.addParameter(period_parameter);
   add_pwm_period_on_duration_method.addParameter(on_duration_parameter);
   add_pwm_period_on_duration_method.addParameter(count_parameter);
@@ -140,8 +136,8 @@ void Controller::setup()
   // add_pwm_frequency_duty_cycle_method.addParameter(duty_cycle_parameter);
   // add_pwm_frequency_duty_cycle_method.addParameter(pwm_duration_parameter);
 
-  // ModularDevice::Method& stop_all_pulses_method = modular_server_.createMethod(constants::stop_all_pulses_method_name);
-  // stop_all_pulses_method.attachCallback(callbacks::stopAllPulsesCallback);
+  ModularDevice::Method& stop_all_pulses_method = modular_server_.createMethod(constants::stop_all_pulses_method_name);
+  stop_all_pulses_method.attachCallback(callbacks::stopAllPulsesCallback);
 
   // ModularDevice::Method& start_pwm_period_on_duration_method = modular_server_.createMethod(constants::start_pwm_period_on_duration_method_name);
   // start_pwm_period_on_duration_method.attachCallback(callbacks::startPwmPeriodOnDurationCallback);
@@ -200,9 +196,13 @@ void Controller::setup()
   inc_dsp_lbl.setDisplayPosition(constants::inc_dsp_lbl_display_position);
   inc_dsp_lbl.setConstantString(constants::inc_dsp_lbl_str);
 
-  Standalone::DisplayLabel& c_dsp_lbl = standalone_interface_.createDisplayLabel();
-  c_dsp_lbl.setDisplayPosition(constants::c_dsp_lbl_display_position);
-  c_dsp_lbl.setConstantString(constants::c_dsp_lbl_str);
+  Standalone::DisplayLabel& chnl_dsp_lbl = standalone_interface_.createDisplayLabel();
+  chnl_dsp_lbl.setDisplayPosition(constants::chnl_dsp_lbl_display_position);
+  chnl_dsp_lbl.setConstantString(constants::chnl_dsp_lbl_str);
+
+  Standalone::DisplayLabel& pwr_dsp_lbl = standalone_interface_.createDisplayLabel();
+  pwr_dsp_lbl.setDisplayPosition(constants::pwr_dsp_lbl_display_position);
+  pwr_dsp_lbl.setConstantString(constants::pwr_dsp_lbl_str);
 
   Standalone::DisplayLabel& period_dsp_lbl = standalone_interface_.createDisplayLabel();
   period_dsp_lbl.setDisplayPosition(constants::period_dsp_lbl_display_position);
@@ -230,13 +230,19 @@ void Controller::setup()
   power_int_var_ptr_->trimDisplayWidthUsingRange();
   power_int_var_ptr_->setValue(constants::display_power_default);
 
-  Standalone::InteractiveVariable& inc_int_var = standalone_interface_.createIncrementVariable();
+  Standalone::InteractiveVariable& inc_int_var = standalone_interface_.createIncrementVariable(constants::inc_width_max);
   inc_int_var.setDisplayPosition(constants::inc_int_var_display_position);
 
-  c_int_var_ptr_ = &(standalone_interface_.createInteractiveVariable());
-  c_int_var_ptr_->setDisplayPosition(constants::c_int_var_display_position);
-  c_int_var_ptr_->setRange(0,constants::CHANNEL_COUNT-1);
-  c_int_var_ptr_->trimDisplayWidthUsingRange();
+  chnl_int_var_ptr_ = &(standalone_interface_.createInteractiveVariable());
+  chnl_int_var_ptr_->setDisplayPosition(constants::chnl_int_var_display_position);
+  chnl_int_var_ptr_->setRange(0,constants::CHANNEL_COUNT-1);
+  chnl_int_var_ptr_->trimDisplayWidthUsingRange();
+
+  pwr_int_var_ptr_ = &(standalone_interface_.createInteractiveVariable());
+  pwr_int_var_ptr_->setDisplayPosition(constants::pwr_int_var_display_position);
+  pwr_int_var_ptr_->setRange(constants::power_min,constants::power_max);
+  pwr_int_var_ptr_->trimDisplayWidthUsingRange();
+  pwr_int_var_ptr_->setValue(constants::display_power_default);
 
   period_int_var_ptr_ = &(standalone_interface_.createInteractiveVariable());
   period_int_var_ptr_->setDisplayPosition(constants::period_int_var_display_position);
@@ -286,8 +292,10 @@ void Controller::setup()
   frame = 4;
   inc_dsp_lbl.addToFrame(frame);
   inc_int_var.addToFrame(frame);
-  c_dsp_lbl.addToFrame(frame);
-  c_int_var_ptr_->addToFrame(frame);
+  chnl_dsp_lbl.addToFrame(frame);
+  chnl_int_var_ptr_->addToFrame(frame);
+  pwr_dsp_lbl.addToFrame(frame);
+  pwr_int_var_ptr_->addToFrame(frame);
   period_dsp_lbl.addToFrame(frame);
   on_dsp_lbl.addToFrame(frame);
   count_dsp_lbl.addToFrame(frame);
@@ -295,6 +303,10 @@ void Controller::setup()
   on_int_var_ptr_->addToFrame(frame);
   count_int_var_ptr_->addToFrame(frame);
   standalone_interface_.attachCallbackToFrame(callbacks::pwmStandaloneCallback,frame);
+
+  // Frame 5
+  frame = 5;
+  standalone_interface_.attachCallbackToFrame(callbacks::stopAllPulsesCallback,frame);
 
   // Enable Standalone Interface
   standalone_interface_.enable();
@@ -354,32 +366,37 @@ uint8_t Controller::getPowerIntVar()
   return power_int_var_ptr_->getValue();
 }
 
-uint8_t Controller::getCIntVar()
+uint8_t Controller::getChnlIntVar()
 {
-  return c_int_var_ptr_->getValue();
+  return chnl_int_var_ptr_->getValue();
 }
 
-int Controller::getPeriodIntVar()
+uint8_t Controller::getPwrIntVar()
+{
+  return pwr_int_var_ptr_->getValue();
+}
+
+long Controller::getPeriodIntVar()
 {
   return period_int_var_ptr_->getValue();
 }
 
-void Controller::setPeriodIntVar(int value)
+void Controller::setPeriodIntVar(long value)
 {
   period_int_var_ptr_->setValue(value);
 }
 
-int Controller::getOnIntVar()
+long Controller::getOnIntVar()
 {
   return on_int_var_ptr_->getValue();
 }
 
-void Controller::setOnIntVar(int value)
+void Controller::setOnIntVar(long value)
 {
   on_int_var_ptr_->setValue(value);
 }
 
-void Controller::setOnIntVarMax(int value)
+void Controller::setOnIntVarMax(long value)
 {
   if (value <= constants::display_on_max)
   {
@@ -387,17 +404,17 @@ void Controller::setOnIntVarMax(int value)
   }
 }
 
-int Controller::getCountIntVar()
+long Controller::getCountIntVar()
 {
   return count_int_var_ptr_->getValue();
 }
 
-void Controller::setCountIntVar(int value)
+void Controller::setCountIntVar(long value)
 {
   count_int_var_ptr_->setValue(value);
 }
 
-void Controller::setCountIntVarMax(int value)
+void Controller::setCountIntVarMax(long value)
 {
   if (value <= constants::display_count_max)
   {

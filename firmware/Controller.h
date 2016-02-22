@@ -29,15 +29,16 @@ public:
   uint8_t getChannelPower(uint8_t channel);
   uint8_t getChannelIntVar();
   uint8_t getPowerIntVar();
-  uint8_t getCIntVar();
-  int getPeriodIntVar();
-  void setPeriodIntVar(int value);
-  int getOnIntVar();
-  void setOnIntVar(int value);
-  void setOnIntVarMax(int value);
-  int getCountIntVar();
-  void setCountIntVar(int value);
-  void setCountIntVarMax(int value);
+  uint8_t getChnlIntVar();
+  uint8_t getPwrIntVar();
+  long getPeriodIntVar();
+  void setPeriodIntVar(long value);
+  long getOnIntVar();
+  void setOnIntVar(long value);
+  void setOnIntVarMax(long value);
+  long getCountIntVar();
+  void setCountIntVar(long value);
+  void setCountIntVarMax(long value);
 private:
   ModularDevice::ModularServer modular_server_;
   SavedVariable saved_variables_[constants::SAVED_VARIABLE_COUNT_MAX];
@@ -52,7 +53,8 @@ private:
   Standalone::InteractiveVariable *channel_int_var_ptr_;
   Standalone::InteractiveVariable *power_int_var_ptr_;
 
-  Standalone::InteractiveVariable *c_int_var_ptr_;
+  Standalone::InteractiveVariable *chnl_int_var_ptr_;
+  Standalone::InteractiveVariable *pwr_int_var_ptr_;
   Standalone::InteractiveVariable *period_int_var_ptr_;
   Standalone::InteractiveVariable *on_int_var_ptr_;
   Standalone::InteractiveVariable *count_int_var_ptr_;
