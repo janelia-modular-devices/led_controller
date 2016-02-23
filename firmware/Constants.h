@@ -8,19 +8,20 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 #include "ConstantVariable.h"
+#include "StandaloneInterface.h"
 
 
 namespace constants
 {
 //MAX values must be >= 1, >= created/copied count, < RAM limit
-enum{SAVED_VARIABLE_COUNT_MAX=1};
-enum{PARAMETER_COUNT_MAX=13};
+enum{SAVED_VARIABLE_COUNT_MAX=4};
+enum{PARAMETER_COUNT_MAX=16};
 enum{METHOD_COUNT_MAX=20};
 
 enum{DISPLAY_LABEL_COUNT_MAX=10};
 enum{DISPLAY_VARIABLE_COUNT_MAX=1};
 enum{INTERACTIVE_VARIABLE_COUNT_MAX=10};
-enum {FRAME_COUNT=6};
+enum {FRAME_COUNT=7};
 
 enum {CHANNEL_COUNT=4};
 enum {INDEXED_CHANNELS_POWER_COUNT_MAX=4};
@@ -34,16 +35,7 @@ extern const unsigned char firmware_major;
 extern const unsigned char firmware_minor;
 extern const unsigned char firmware_patch;
 
-extern HardwareSerial& display_serial;
-
-extern const int enc_a_pin;
-extern const int enc_b_pin;
-extern const int enc_btn_pin;
-extern const int enc_btn_int;
-extern const int btn_pin;
-extern const int btn_int;
-extern const int lights_pin;
-extern const int standalone_update_period;
+extern const Standalone::Configuration standalone_configuration;
 
 extern const int pwm_pins[CHANNEL_COUNT];
 extern const int enable_pins[CHANNEL_COUNT];
@@ -142,6 +134,7 @@ extern ConstantString start_pwm_frequency_duty_cycle_method_name;
 extern ConstantString stop_pulse_wave_method_name;
 
 extern ConstantString pwm_method_name;
+extern ConstantString set_pwm_defaults_method_name;
 extern const ConstantString frame_name_array[FRAME_COUNT];
 }
 #endif

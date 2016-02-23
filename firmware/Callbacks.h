@@ -70,6 +70,8 @@ void setAllChannelsPowerStandaloneCallback();
 
 void pwmStandaloneCallback();
 
+void setPwmDefaultsStandaloneCallback();
+
 // EventController Callbacks
 void removeIndexedChannelCallback(int index);
 

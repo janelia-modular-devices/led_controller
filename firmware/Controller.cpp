@@ -7,15 +7,7 @@
 #include "Controller.h"
 
 Controller::Controller() :
-  standalone_interface_(Standalone::StandaloneInterface(constants::display_serial,
-                                                        constants::enc_a_pin,
-                                                        constants::enc_b_pin,
-                                                        constants::enc_btn_pin,
-                                                        constants::enc_btn_int,
-                                                        constants::btn_pin,
-                                                        constants::btn_int,
-                                                        constants::lights_pin,
-                                                        constants::standalone_update_period))
+  standalone_interface_(Standalone::StandaloneInterface(constants::standalone_configuration))
 {
 }
 
@@ -44,6 +36,10 @@ void Controller::setup()
   modular_server_.setMethodStorage(methods_);
 
   // Saved Variables
+  modular_server_.createSavedVariable(constants::period_dsp_lbl_str,constants::display_period_default);
+  modular_server_.createSavedVariable(constants::on_dsp_lbl_str,constants::display_on_default);
+  modular_server_.createSavedVariable(constants::pwr_dsp_lbl_str,constants::display_power_default);
+  modular_server_.createSavedVariable(constants::count_dsp_lbl_str,constants::display_count_default);
 
   // Parameters
   ModularDevice::Parameter& channel_parameter = modular_server_.createParameter(constants::channel_parameter_name);
@@ -128,42 +124,34 @@ void Controller::setup()
   add_pwm_period_on_duration_method.addParameter(on_duration_parameter);
   add_pwm_period_on_duration_method.addParameter(count_parameter);
 
-  // ModularDevice::Method& add_pwm_frequency_duty_cycle_method = modular_server_.createMethod(constants::add_pwm_frequency_duty_cycle_method_name);
-  // add_pwm_frequency_duty_cycle_method.attachCallback(callbacks::addPwmFrequencyDutyCycleCallback);
-  // add_pwm_frequency_duty_cycle_method.addParameter(channels_parameter);
-  // add_pwm_frequency_duty_cycle_method.addParameter(delay_parameter);
-  // add_pwm_frequency_duty_cycle_method.addParameter(frequency_parameter);
-  // add_pwm_frequency_duty_cycle_method.addParameter(duty_cycle_parameter);
-  // add_pwm_frequency_duty_cycle_method.addParameter(pwm_duration_parameter);
+  ModularDevice::Method& add_pwm_frequency_duty_cycle_method = modular_server_.createMethod(constants::add_pwm_frequency_duty_cycle_method_name);
+  add_pwm_frequency_duty_cycle_method.attachCallback(callbacks::addPwmFrequencyDutyCycleCallback);
+  add_pwm_frequency_duty_cycle_method.addParameter(channels_parameter);
+  add_pwm_frequency_duty_cycle_method.addParameter(power_parameter);
+  add_pwm_frequency_duty_cycle_method.addParameter(frequency_parameter);
+  add_pwm_frequency_duty_cycle_method.addParameter(duty_cycle_parameter);
+  add_pwm_frequency_duty_cycle_method.addParameter(pwm_duration_parameter);
 
   ModularDevice::Method& stop_all_pulses_method = modular_server_.createMethod(constants::stop_all_pulses_method_name);
   stop_all_pulses_method.attachCallback(callbacks::stopAllPulsesCallback);
 
-  // ModularDevice::Method& start_pwm_period_on_duration_method = modular_server_.createMethod(constants::start_pwm_period_on_duration_method_name);
-  // start_pwm_period_on_duration_method.attachCallback(callbacks::startPwmPeriodOnDurationCallback);
-  // start_pwm_period_on_duration_method.addParameter(channels_parameter);
-  // start_pwm_period_on_duration_method.addParameter(delay_parameter);
-  // start_pwm_period_on_duration_method.addParameter(period_parameter);
-  // start_pwm_period_on_duration_method.addParameter(on_duration_parameter);
+  ModularDevice::Method& start_pwm_period_on_duration_method = modular_server_.createMethod(constants::start_pwm_period_on_duration_method_name);
+  start_pwm_period_on_duration_method.attachCallback(callbacks::startPwmPeriodOnDurationCallback);
+  start_pwm_period_on_duration_method.addParameter(channels_parameter);
+  start_pwm_period_on_duration_method.addParameter(power_parameter);
+  start_pwm_period_on_duration_method.addParameter(period_parameter);
+  start_pwm_period_on_duration_method.addParameter(on_duration_parameter);
 
-  // ModularDevice::Method& start_pwm_frequency_duty_cycle_method = modular_server_.createMethod(constants::start_pwm_frequency_duty_cycle_method_name);
-  // start_pwm_frequency_duty_cycle_method.attachCallback(callbacks::startPwmFrequencyDutyCycleCallback);
-  // start_pwm_frequency_duty_cycle_method.addParameter(channels_parameter);
-  // start_pwm_frequency_duty_cycle_method.addParameter(delay_parameter);
-  // start_pwm_frequency_duty_cycle_method.addParameter(frequency_parameter);
-  // start_pwm_frequency_duty_cycle_method.addParameter(duty_cycle_parameter);
+  ModularDevice::Method& start_pwm_frequency_duty_cycle_method = modular_server_.createMethod(constants::start_pwm_frequency_duty_cycle_method_name);
+  start_pwm_frequency_duty_cycle_method.attachCallback(callbacks::startPwmFrequencyDutyCycleCallback);
+  start_pwm_frequency_duty_cycle_method.addParameter(channels_parameter);
+  start_pwm_frequency_duty_cycle_method.addParameter(power_parameter);
+  start_pwm_frequency_duty_cycle_method.addParameter(frequency_parameter);
+  start_pwm_frequency_duty_cycle_method.addParameter(duty_cycle_parameter);
 
-  // ModularDevice::Method& start_spike_and_hold_method = modular_server_.createMethod(constants::start_spike_and_hold_method_name);
-  // start_spike_and_hold_method.attachCallback(callbacks::startSpikeAndHoldCallback);
-  // start_spike_and_hold_method.addParameter(channels_parameter);
-  // start_spike_and_hold_method.addParameter(delay_parameter);
-  // start_spike_and_hold_method.addParameter(spike_duty_cycle_parameter);
-  // start_spike_and_hold_method.addParameter(spike_duration_parameter);
-  // start_spike_and_hold_method.addParameter(hold_duty_cycle_parameter);
-
-  // ModularDevice::Method& stop_pulse_wave_method = modular_server_.createMethod(constants::stop_pulse_wave_method_name);
-  // stop_pulse_wave_method.attachCallback(callbacks::stopPulseWaveCallback);
-  // stop_pulse_wave_method.addParameter(pulse_wave_index_parameter);
+  ModularDevice::Method& stop_pulse_wave_method = modular_server_.createMethod(constants::stop_pulse_wave_method_name);
+  stop_pulse_wave_method.attachCallback(callbacks::stopPulseWaveCallback);
+  stop_pulse_wave_method.addParameter(pulse_wave_index_parameter);
 
   // Setup Streams
   Serial.begin(constants::baudrate);
@@ -242,25 +230,33 @@ void Controller::setup()
   pwr_int_var_ptr_->setDisplayPosition(constants::pwr_int_var_display_position);
   pwr_int_var_ptr_->setRange(constants::power_min,constants::power_max);
   pwr_int_var_ptr_->trimDisplayWidthUsingRange();
-  pwr_int_var_ptr_->setValue(constants::display_power_default);
+  long pwr_default;
+  modular_server_.getSavedVariableValue(constants::pwr_dsp_lbl_str,pwr_default);
+  pwr_int_var_ptr_->setValue(pwr_default);
 
   period_int_var_ptr_ = &(standalone_interface_.createInteractiveVariable());
   period_int_var_ptr_->setDisplayPosition(constants::period_int_var_display_position);
   period_int_var_ptr_->setRange(constants::display_period_min,constants::display_period_max);
   period_int_var_ptr_->trimDisplayWidthUsingRange();
-  period_int_var_ptr_->setValue(constants::display_period_default);
+  long period_default;
+  modular_server_.getSavedVariableValue(constants::period_dsp_lbl_str,period_default);
+  period_int_var_ptr_->setValue(period_default);
 
   on_int_var_ptr_ = &(standalone_interface_.createInteractiveVariable());
   on_int_var_ptr_->setDisplayPosition(constants::on_int_var_display_position);
   on_int_var_ptr_->setRange(constants::display_on_min,constants::display_on_max);
   on_int_var_ptr_->trimDisplayWidthUsingRange();
-  on_int_var_ptr_->setValue(constants::display_on_default);
+  long on_default;
+  modular_server_.getSavedVariableValue(constants::on_dsp_lbl_str,on_default);
+  on_int_var_ptr_->setValue(on_default);
 
   count_int_var_ptr_ = &(standalone_interface_.createInteractiveVariable());
   count_int_var_ptr_->setDisplayPosition(constants::count_int_var_display_position);
   count_int_var_ptr_->setRange(constants::display_count_min,constants::display_count_max);
   count_int_var_ptr_->trimDisplayWidthUsingRange();
-  count_int_var_ptr_->setValue(constants::display_count_default);
+  long count_default;
+  modular_server_.getSavedVariableValue(constants::count_dsp_lbl_str,count_default);
+  count_int_var_ptr_->setValue(count_default);
 
   // All Frames
 
@@ -297,16 +293,30 @@ void Controller::setup()
   pwr_dsp_lbl.addToFrame(frame);
   pwr_int_var_ptr_->addToFrame(frame);
   period_dsp_lbl.addToFrame(frame);
-  on_dsp_lbl.addToFrame(frame);
-  count_dsp_lbl.addToFrame(frame);
   period_int_var_ptr_->addToFrame(frame);
+  on_dsp_lbl.addToFrame(frame);
   on_int_var_ptr_->addToFrame(frame);
+  count_dsp_lbl.addToFrame(frame);
   count_int_var_ptr_->addToFrame(frame);
   standalone_interface_.attachCallbackToFrame(callbacks::pwmStandaloneCallback,frame);
 
   // Frame 5
   frame = 5;
   standalone_interface_.attachCallbackToFrame(callbacks::stopAllPulsesCallback,frame);
+
+  // Frame 6
+  frame = 6;
+  inc_dsp_lbl.addToFrame(frame);
+  inc_int_var.addToFrame(frame);
+  pwr_dsp_lbl.addToFrame(frame);
+  pwr_int_var_ptr_->addToFrame(frame);
+  period_dsp_lbl.addToFrame(frame);
+  period_int_var_ptr_->addToFrame(frame);
+  on_dsp_lbl.addToFrame(frame);
+  on_int_var_ptr_->addToFrame(frame);
+  count_dsp_lbl.addToFrame(frame);
+  count_int_var_ptr_->addToFrame(frame);
+  standalone_interface_.attachCallbackToFrame(callbacks::setPwmDefaultsStandaloneCallback,frame);
 
   // Enable Standalone Interface
   standalone_interface_.enable();

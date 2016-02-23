@@ -123,34 +123,36 @@ void addPwmPeriodOnDurationCallback()
                                                                      removeIndexedChannelCallback);
 }
 
-// void addPwmFrequencyDutyCycleCallback()
-// {
-//   if (indexed_channels_power.full())
-//   {
-//     return;
-//   }
-//   ArduinoJson::JsonArray& channels_array = modular_server.getParameterValue(constants::channels_parameter_name);
-//   uint32_t channels = arrayToChannels(channels_array);
-//   int index = indexed_channels_power.add(channels);
-//   long delay = modular_server.getParameterValue(constants::delay_parameter_name);
-//   double frequency = modular_server.getParameterValue(constants::frequency_parameter_name);
-//   long duty_cycle = modular_server.getParameterValue(constants::duty_cycle_parameter_name);
-//   long pwm_duration = modular_server.getParameterValue(constants::pwm_duration_parameter_name);
-//   uint32_t period = 1000/frequency;
-//   period = max(period,2);
-//   uint32_t on_duration = (period*duty_cycle)/100;
-//   on_duration = constrain(on_duration,1,period-1);
-//   uint32_t count = pwm_duration/period;
-//   EventController::event_controller.addPwmUsingDelayPeriodOnDuration(setChannelsOnEventCallback,
-//                                                                      setChannelsOffEventCallback,
-//                                                                      delay,
-//                                                                      period,
-//                                                                      on_duration,
-//                                                                      count,
-//                                                                      index,
-//                                                                      NULL,
-//                                                                      removeIndexedChannelCallback);
-// }
+void addPwmFrequencyDutyCycleCallback()
+{
+  if (indexed_channels_power.full())
+  {
+    return;
+  }
+  ArduinoJson::JsonArray& channels_array = modular_server.getParameterValue(constants::channels_parameter_name);
+  ChannelsPower channels_power;
+  channels_power.channels = arrayToChannels(channels_array);
+  long power = modular_server.getParameterValue(constants::power_parameter_name);
+  channels_power.power = power;
+  int index = indexed_channels_power.add(channels_power);
+  double frequency = modular_server.getParameterValue(constants::frequency_parameter_name);
+  long duty_cycle = modular_server.getParameterValue(constants::duty_cycle_parameter_name);
+  long pwm_duration = modular_server.getParameterValue(constants::pwm_duration_parameter_name);
+  uint32_t period = 1000/frequency;
+  period = max(period,2);
+  uint32_t on_duration = (period*duty_cycle)/100;
+  on_duration = constrain(on_duration,1,period-1);
+  uint32_t count = pwm_duration/period;
+  EventController::event_controller.addPwmUsingDelayPeriodOnDuration(setChannelsOnEventCallback,
+                                                                     setChannelsOffEventCallback,
+                                                                     constants::delay,
+                                                                     period,
+                                                                     on_duration,
+                                                                     count,
+                                                                     index,
+                                                                     NULL,
+                                                                     removeIndexedChannelCallback);
+}
 
 void stopAllPulsesCallback()
 {
@@ -165,74 +167,78 @@ void stopAllPulsesCallback()
   indexed_channels_power.clear();
 }
 
-// void startPwmPeriodOnDurationCallback()
-// {
-//   if (indexed_channels_power.full() || indexed_pulses.full())
-//   {
-//     modular_server.writeResultToResponse(-1);
-//     return;
-//   }
-//   ArduinoJson::JsonArray& channels_array = modular_server.getParameterValue(constants::channels_parameter_name);
-//   uint32_t channels = arrayToChannels(channels_array);
-//   int index = indexed_channels_power.add(channels);
-//   long delay = modular_server.getParameterValue(constants::delay_parameter_name);
-//   long period = modular_server.getParameterValue(constants::period_parameter_name);
-//   long on_duration = modular_server.getParameterValue(constants::on_duration_parameter_name);
-//   PulseInfo pulse_info;
-//   EventController::EventIdPair event_id_pair =
-//     EventController::event_controller.addInfinitePwmUsingDelayPeriodOnDuration(setChannelsOnEventCallback,
-//                                                                                setChannelsOffEventCallback,
-//                                                                                delay,
-//                                                                                period,
-//                                                                                on_duration,
-//                                                                                index);
-//   pulse_info.event_id_pair = event_id_pair;
-//   pulse_info.channel_index = index;
-//   int pulse_wave_index = indexed_pulses.add(pulse_info);
-//   modular_server.writeResultToResponse(pulse_wave_index);
-// }
+void startPwmPeriodOnDurationCallback()
+{
+  if (indexed_channels_power.full() || indexed_pulses.full())
+  {
+    modular_server.writeResultToResponse(-1);
+    return;
+  }
+  ArduinoJson::JsonArray& channels_array = modular_server.getParameterValue(constants::channels_parameter_name);
+  ChannelsPower channels_power;
+  channels_power.channels = arrayToChannels(channels_array);
+  long power = modular_server.getParameterValue(constants::power_parameter_name);
+  channels_power.power = power;
+  int index = indexed_channels_power.add(channels_power);
+  long period = modular_server.getParameterValue(constants::period_parameter_name);
+  long on_duration = modular_server.getParameterValue(constants::on_duration_parameter_name);
+  PulseInfo pulse_info;
+  EventController::EventIdPair event_id_pair =
+    EventController::event_controller.addInfinitePwmUsingDelayPeriodOnDuration(setChannelsOnEventCallback,
+                                                                               setChannelsOffEventCallback,
+                                                                               constants::delay,
+                                                                               period,
+                                                                               on_duration,
+                                                                               index);
+  pulse_info.event_id_pair = event_id_pair;
+  pulse_info.channel_index = index;
+  int pulse_wave_index = indexed_pulses.add(pulse_info);
+  modular_server.writeResultToResponse(pulse_wave_index);
+}
 
-// void startPwmFrequencyDutyCycleCallback()
-// {
-//   if (indexed_channels_power.full() || indexed_pulses.full())
-//   {
-//     modular_server.writeResultToResponse(-1);
-//     return;
-//   }
-//   ArduinoJson::JsonArray& channels_array = modular_server.getParameterValue(constants::channels_parameter_name);
-//   uint32_t channels = arrayToChannels(channels_array);
-//   int index = indexed_channels_power.add(channels);
-//   long delay = modular_server.getParameterValue(constants::delay_parameter_name);
-//   double frequency = modular_server.getParameterValue(constants::frequency_parameter_name);
-//   long duty_cycle = modular_server.getParameterValue(constants::duty_cycle_parameter_name);
-//   long pwm_duration = modular_server.getParameterValue(constants::pwm_duration_parameter_name);
-//   uint32_t period = 1000/frequency;
-//   period = max(period,2);
-//   uint32_t on_duration = (period*duty_cycle)/100;
-//   on_duration = constrain(on_duration,1,period-1);
-//   PulseInfo pulse_info;
-//   EventController::EventIdPair event_id_pair =
-//     EventController::event_controller.addInfinitePwmUsingDelayPeriodOnDuration(setChannelsOnEventCallback,
-//                                                                                setChannelsOffEventCallback,
-//                                                                                delay,
-//                                                                                period,
-//                                                                                on_duration,
-//                                                                                index);
-//   pulse_info.event_id_pair = event_id_pair;
-//   pulse_info.channel_index = index;
-//   int pulse_wave_index = indexed_pulses.add(pulse_info);
-//   modular_server.writeResultToResponse(pulse_wave_index);
-// }
+void startPwmFrequencyDutyCycleCallback()
+{
+  if (indexed_channels_power.full() || indexed_pulses.full())
+  {
+    modular_server.writeResultToResponse(-1);
+    return;
+  }
+  ArduinoJson::JsonArray& channels_array = modular_server.getParameterValue(constants::channels_parameter_name);
+  ChannelsPower channels_power;
+  channels_power.channels = arrayToChannels(channels_array);
+  long power = modular_server.getParameterValue(constants::power_parameter_name);
+  channels_power.power = power;
+  int index = indexed_channels_power.add(channels_power);
+  double frequency = modular_server.getParameterValue(constants::frequency_parameter_name);
+  long duty_cycle = modular_server.getParameterValue(constants::duty_cycle_parameter_name);
+  long pwm_duration = modular_server.getParameterValue(constants::pwm_duration_parameter_name);
+  uint32_t period = 1000/frequency;
+  period = max(period,2);
+  uint32_t on_duration = (period*duty_cycle)/100;
+  on_duration = constrain(on_duration,1,period-1);
+  PulseInfo pulse_info;
+  EventController::EventIdPair event_id_pair =
+    EventController::event_controller.addInfinitePwmUsingDelayPeriodOnDuration(setChannelsOnEventCallback,
+                                                                               setChannelsOffEventCallback,
+                                                                               constants::delay,
+                                                                               period,
+                                                                               on_duration,
+                                                                               index);
+  pulse_info.event_id_pair = event_id_pair;
+  pulse_info.channel_index = index;
+  int pulse_wave_index = indexed_pulses.add(pulse_info);
+  modular_server.writeResultToResponse(pulse_wave_index);
+}
 
-// void stopPulseWaveCallback()
-// {
-//   long pulse_wave_index = modular_server.getParameterValue(constants::pulse_wave_index_parameter_name);
-//   PulseInfo &pulse_info = indexed_pulses[pulse_wave_index];
-//   EventController::event_controller.removeEventPair(pulse_info.event_id_pair);
-//   setChannelsOffEventCallback(pulse_info.channel_index);
-//   indexed_channels_power.remove(pulse_info.channel_index);
-//   indexed_pulses.remove(pulse_wave_index);
-// }
+void stopPulseWaveCallback()
+{
+  long pulse_wave_index = modular_server.getParameterValue(constants::pulse_wave_index_parameter_name);
+  PulseInfo &pulse_info = indexed_pulses[pulse_wave_index];
+  EventController::event_controller.removeEventPair(pulse_info.event_id_pair);
+  setChannelsOffEventCallback(pulse_info.channel_index);
+  indexed_channels_power.remove(pulse_info.channel_index);
+  indexed_pulses.remove(pulse_wave_index);
+}
 
 uint32_t arrayToChannels(ArduinoJson::JsonArray& channels_array)
 {
@@ -291,6 +297,18 @@ void pwmStandaloneCallback()
                                                                      index,
                                                                      NULL,
                                                                      removeIndexedChannelCallback);
+}
+
+void setPwmDefaultsStandaloneCallback()
+{
+  long period = controller.getPeriodIntVar();
+  modular_server.setSavedVariableValue(constants::period_dsp_lbl_str,period);
+  long on_duration = controller.getOnIntVar();
+  modular_server.setSavedVariableValue(constants::on_dsp_lbl_str,on_duration);
+  long count = controller.getCountIntVar();
+  modular_server.setSavedVariableValue(constants::count_dsp_lbl_str,count);
+  long power = controller.getPwrIntVar();
+  modular_server.setSavedVariableValue(constants::pwr_dsp_lbl_str,power);
 }
 
 // EventController Callbacks

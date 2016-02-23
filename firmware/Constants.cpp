@@ -19,16 +19,19 @@ const unsigned char firmware_major = 0;
 const unsigned char firmware_minor = 1;
 const unsigned char firmware_patch = 0;
 
-HardwareSerial& display_serial = Serial3;
-
-const int enc_a_pin = 18;
-const int enc_b_pin = 2;
-const int enc_btn_pin = 19;
-const int enc_btn_int = 4;
-const int btn_pin = 21;
-const int btn_int = 2;
-const int lights_pin = 22;
-const int standalone_update_period = 300;
+const Standalone::Configuration standalone_configuration =
+  {Serial3, // display_serial
+   18, // enc_a_pin
+   2, // enc_b_pin
+   19, // enc_btn_pin
+   4, // enc_btn_int
+   21, // btn_pin
+   2, // btn_int
+   20, // switch_pin
+   3, // switch_int
+   22, // lights_pin
+   300 // update_period
+  };
 
 const int pwm_pins[CHANNEL_COUNT] = {10,9,8,7};
 const int enable_pins[CHANNEL_COUNT] = {52,50,48,46};
@@ -127,6 +130,7 @@ CONSTANT_STRING(start_pwm_frequency_duty_cycle_method_name,"startPwmFrequencyDut
 CONSTANT_STRING(stop_pulse_wave_method_name,"stopPulseWave");
 
 CONSTANT_STRING(pwm_method_name,"pwm");
+CONSTANT_STRING(set_pwm_defaults_method_name,"defaults");
 const ConstantString frame_name_array[] =
   {
     set_channel_power_method_name,
@@ -135,5 +139,6 @@ const ConstantString frame_name_array[] =
     set_all_channels_off_method_name,
     pwm_method_name,
     stop_all_pulses_method_name,
+    set_pwm_defaults_method_name,
   };
 }
