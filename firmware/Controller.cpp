@@ -42,81 +42,81 @@ void Controller::setup()
   modular_server_.createSavedVariable(constants::count_dsp_lbl_str,constants::display_count_default);
 
   // Parameters
-  ModularDevice::Parameter& channel_parameter = modular_server_.createParameter(constants::channel_parameter_name);
+  ModularDevice::Parameter & channel_parameter = modular_server_.createParameter(constants::channel_parameter_name);
   channel_parameter.setRange(0,constants::CHANNEL_COUNT-1);
 
-  ModularDevice::Parameter& channels_parameter = modular_server_.createParameter(constants::channels_parameter_name);
+  ModularDevice::Parameter & channels_parameter = modular_server_.createParameter(constants::channels_parameter_name);
   channels_parameter.setTypeArray();
   channels_parameter.setRange(0,constants::CHANNEL_COUNT-1);
 
-  ModularDevice::Parameter& power_parameter = modular_server_.createParameter(constants::power_parameter_name);
+  ModularDevice::Parameter & power_parameter = modular_server_.createParameter(constants::power_parameter_name);
   power_parameter.setRange(constants::power_min,constants::power_max);
   power_parameter.setUnits(constants::power_units_name);
 
-  ModularDevice::Parameter& powers_parameter = modular_server_.createParameter(constants::powers_parameter_name);
+  ModularDevice::Parameter & powers_parameter = modular_server_.createParameter(constants::powers_parameter_name);
   powers_parameter.setTypeArray();
   powers_parameter.setRange(constants::power_min,constants::power_max);
 
-  ModularDevice::Parameter& on_duration_parameter = modular_server_.createParameter(constants::on_duration_parameter_name);
+  ModularDevice::Parameter & on_duration_parameter = modular_server_.createParameter(constants::on_duration_parameter_name);
   on_duration_parameter.setRange(constants::duration_min,constants::duration_max);
   on_duration_parameter.setUnits(constants::duration_units_name);
 
-  ModularDevice::Parameter& period_parameter = modular_server_.createParameter(constants::period_parameter_name);
+  ModularDevice::Parameter & period_parameter = modular_server_.createParameter(constants::period_parameter_name);
   period_parameter.setRange(constants::duration_min,constants::duration_max);
   period_parameter.setUnits(constants::duration_units_name);
 
-  ModularDevice::Parameter& count_parameter = modular_server_.createParameter(constants::count_parameter_name);
+  ModularDevice::Parameter & count_parameter = modular_server_.createParameter(constants::count_parameter_name);
   count_parameter.setRange(constants::duration_min,constants::duration_max);
 
-  ModularDevice::Parameter& frequency_parameter = modular_server_.createParameter(constants::frequency_parameter_name);
+  ModularDevice::Parameter & frequency_parameter = modular_server_.createParameter(constants::frequency_parameter_name);
   frequency_parameter.setRange(constants::frequency_min,constants::frequency_max);
   frequency_parameter.setUnits(constants::frequency_units_name);
 
-  ModularDevice::Parameter& duty_cycle_parameter = modular_server_.createParameter(constants::duty_cycle_parameter_name);
+  ModularDevice::Parameter & duty_cycle_parameter = modular_server_.createParameter(constants::duty_cycle_parameter_name);
   duty_cycle_parameter.setRange(constants::duty_cycle_min,constants::duty_cycle_max);
   duty_cycle_parameter.setUnits(constants::duty_cycle_units_name);
 
-  ModularDevice::Parameter& pwm_duration_parameter = modular_server_.createParameter(constants::pwm_duration_parameter_name);
+  ModularDevice::Parameter & pwm_duration_parameter = modular_server_.createParameter(constants::pwm_duration_parameter_name);
   pwm_duration_parameter.setRange(constants::duration_min,constants::duration_max);
   pwm_duration_parameter.setUnits(constants::duration_units_name);
 
-  ModularDevice::Parameter& pulse_wave_index_parameter = modular_server_.createParameter(constants::pulse_wave_index_parameter_name);
+  ModularDevice::Parameter & pulse_wave_index_parameter = modular_server_.createParameter(constants::pulse_wave_index_parameter_name);
   pulse_wave_index_parameter.setRange((int)0,(constants::INDEXED_PULSES_COUNT_MAX-1));
 
   // Methods
-  ModularDevice::Method& set_channel_power_method = modular_server_.createMethod(constants::set_channel_power_method_name);
+  ModularDevice::Method & set_channel_power_method = modular_server_.createMethod(constants::set_channel_power_method_name);
   set_channel_power_method.attachCallback(callbacks::setChannelPowerCallback);
   set_channel_power_method.addParameter(channel_parameter);
   set_channel_power_method.addParameter(power_parameter);
 
-  ModularDevice::Method& set_channel_off_method = modular_server_.createMethod(constants::set_channel_off_method_name);
+  ModularDevice::Method & set_channel_off_method = modular_server_.createMethod(constants::set_channel_off_method_name);
   set_channel_off_method.attachCallback(callbacks::setChannelOffCallback);
   set_channel_off_method.addParameter(channel_parameter);
 
-  ModularDevice::Method& set_channels_powers_method = modular_server_.createMethod(constants::set_channels_powers_method_name);
+  ModularDevice::Method & set_channels_powers_method = modular_server_.createMethod(constants::set_channels_powers_method_name);
   set_channels_powers_method.attachCallback(callbacks::setChannelsPowersCallback);
   set_channels_powers_method.addParameter(powers_parameter);
 
-  ModularDevice::Method& set_channels_off_method = modular_server_.createMethod(constants::set_channels_off_method_name);
+  ModularDevice::Method & set_channels_off_method = modular_server_.createMethod(constants::set_channels_off_method_name);
   set_channels_off_method.attachCallback(callbacks::setChannelsOffCallback);
   set_channels_off_method.addParameter(channels_parameter);
 
-  ModularDevice::Method& set_all_channels_power_method = modular_server_.createMethod(constants::set_all_channels_power_method_name);
+  ModularDevice::Method & set_all_channels_power_method = modular_server_.createMethod(constants::set_all_channels_power_method_name);
   set_all_channels_power_method.attachCallback(callbacks::setAllChannelsPowerCallback);
   set_all_channels_power_method.addParameter(power_parameter);
 
-  ModularDevice::Method& set_all_channels_off_method = modular_server_.createMethod(constants::set_all_channels_off_method_name);
+  ModularDevice::Method & set_all_channels_off_method = modular_server_.createMethod(constants::set_all_channels_off_method_name);
   set_all_channels_off_method.attachCallback(callbacks::setAllChannelsOffCallback);
 
-  ModularDevice::Method& get_channels_powers_method = modular_server_.createMethod(constants::get_channels_powers_method_name);
+  ModularDevice::Method & get_channels_powers_method = modular_server_.createMethod(constants::get_channels_powers_method_name);
   get_channels_powers_method.attachCallback(callbacks::getChannelsPowersCallback);
   get_channels_powers_method.setReturnTypeArray();
 
-  ModularDevice::Method& get_channel_count_method = modular_server_.createMethod(constants::get_channel_count_method_name);
+  ModularDevice::Method & get_channel_count_method = modular_server_.createMethod(constants::get_channel_count_method_name);
   get_channel_count_method.attachCallback(callbacks::getChannelCountCallback);
   get_channel_count_method.setReturnTypeLong();
 
-  ModularDevice::Method& add_pwm_period_on_duration_method = modular_server_.createMethod(constants::add_pwm_period_on_duration_method_name);
+  ModularDevice::Method & add_pwm_period_on_duration_method = modular_server_.createMethod(constants::add_pwm_period_on_duration_method_name);
   add_pwm_period_on_duration_method.attachCallback(callbacks::addPwmPeriodOnDurationCallback);
   add_pwm_period_on_duration_method.addParameter(channels_parameter);
   add_pwm_period_on_duration_method.addParameter(power_parameter);
@@ -124,7 +124,7 @@ void Controller::setup()
   add_pwm_period_on_duration_method.addParameter(on_duration_parameter);
   add_pwm_period_on_duration_method.addParameter(count_parameter);
 
-  ModularDevice::Method& add_pwm_frequency_duty_cycle_method = modular_server_.createMethod(constants::add_pwm_frequency_duty_cycle_method_name);
+  ModularDevice::Method & add_pwm_frequency_duty_cycle_method = modular_server_.createMethod(constants::add_pwm_frequency_duty_cycle_method_name);
   add_pwm_frequency_duty_cycle_method.attachCallback(callbacks::addPwmFrequencyDutyCycleCallback);
   add_pwm_frequency_duty_cycle_method.addParameter(channels_parameter);
   add_pwm_frequency_duty_cycle_method.addParameter(power_parameter);
@@ -132,24 +132,24 @@ void Controller::setup()
   add_pwm_frequency_duty_cycle_method.addParameter(duty_cycle_parameter);
   add_pwm_frequency_duty_cycle_method.addParameter(pwm_duration_parameter);
 
-  ModularDevice::Method& stop_all_pulses_method = modular_server_.createMethod(constants::stop_all_pulses_method_name);
+  ModularDevice::Method & stop_all_pulses_method = modular_server_.createMethod(constants::stop_all_pulses_method_name);
   stop_all_pulses_method.attachCallback(callbacks::stopAllPulsesCallback);
 
-  ModularDevice::Method& start_pwm_period_on_duration_method = modular_server_.createMethod(constants::start_pwm_period_on_duration_method_name);
+  ModularDevice::Method & start_pwm_period_on_duration_method = modular_server_.createMethod(constants::start_pwm_period_on_duration_method_name);
   start_pwm_period_on_duration_method.attachCallback(callbacks::startPwmPeriodOnDurationCallback);
   start_pwm_period_on_duration_method.addParameter(channels_parameter);
   start_pwm_period_on_duration_method.addParameter(power_parameter);
   start_pwm_period_on_duration_method.addParameter(period_parameter);
   start_pwm_period_on_duration_method.addParameter(on_duration_parameter);
 
-  ModularDevice::Method& start_pwm_frequency_duty_cycle_method = modular_server_.createMethod(constants::start_pwm_frequency_duty_cycle_method_name);
+  ModularDevice::Method & start_pwm_frequency_duty_cycle_method = modular_server_.createMethod(constants::start_pwm_frequency_duty_cycle_method_name);
   start_pwm_frequency_duty_cycle_method.attachCallback(callbacks::startPwmFrequencyDutyCycleCallback);
   start_pwm_frequency_duty_cycle_method.addParameter(channels_parameter);
   start_pwm_frequency_duty_cycle_method.addParameter(power_parameter);
   start_pwm_frequency_duty_cycle_method.addParameter(frequency_parameter);
   start_pwm_frequency_duty_cycle_method.addParameter(duty_cycle_parameter);
 
-  ModularDevice::Method& stop_pulse_wave_method = modular_server_.createMethod(constants::stop_pulse_wave_method_name);
+  ModularDevice::Method & stop_pulse_wave_method = modular_server_.createMethod(constants::stop_pulse_wave_method_name);
   stop_pulse_wave_method.attachCallback(callbacks::stopPulseWaveCallback);
   stop_pulse_wave_method.addParameter(pulse_wave_index_parameter);
 
@@ -170,37 +170,37 @@ void Controller::setup()
   standalone_interface_.setup(constants::frame_name_array);
 
   // Display Labels
-  Standalone::DisplayLabel& channel_dsp_lbl = standalone_interface_.createDisplayLabel();
+  Standalone::DisplayLabel & channel_dsp_lbl = standalone_interface_.createDisplayLabel();
   channel_dsp_lbl.setDisplayPosition(constants::dsp_lbl_display_position);
   channel_dsp_lbl.setConstantString(constants::channel_parameter_name);
   channel_dsp_lbl.setRightJustify();
 
-  Standalone::DisplayLabel& power_dsp_lbl = standalone_interface_.createDisplayLabel();
+  Standalone::DisplayLabel & power_dsp_lbl = standalone_interface_.createDisplayLabel();
   power_dsp_lbl.setDisplayPosition(constants::dsp_lbl_display_position_2);
   power_dsp_lbl.setConstantString(constants::power_parameter_name);
   power_dsp_lbl.setRightJustify();
 
-  Standalone::DisplayLabel& inc_dsp_lbl = standalone_interface_.createDisplayLabel();
+  Standalone::DisplayLabel & inc_dsp_lbl = standalone_interface_.createDisplayLabel();
   inc_dsp_lbl.setDisplayPosition(constants::inc_dsp_lbl_display_position);
   inc_dsp_lbl.setConstantString(constants::inc_dsp_lbl_str);
 
-  Standalone::DisplayLabel& chnl_dsp_lbl = standalone_interface_.createDisplayLabel();
+  Standalone::DisplayLabel & chnl_dsp_lbl = standalone_interface_.createDisplayLabel();
   chnl_dsp_lbl.setDisplayPosition(constants::chnl_dsp_lbl_display_position);
   chnl_dsp_lbl.setConstantString(constants::chnl_dsp_lbl_str);
 
-  Standalone::DisplayLabel& pwr_dsp_lbl = standalone_interface_.createDisplayLabel();
+  Standalone::DisplayLabel & pwr_dsp_lbl = standalone_interface_.createDisplayLabel();
   pwr_dsp_lbl.setDisplayPosition(constants::pwr_dsp_lbl_display_position);
   pwr_dsp_lbl.setConstantString(constants::pwr_dsp_lbl_str);
 
-  Standalone::DisplayLabel& period_dsp_lbl = standalone_interface_.createDisplayLabel();
+  Standalone::DisplayLabel & period_dsp_lbl = standalone_interface_.createDisplayLabel();
   period_dsp_lbl.setDisplayPosition(constants::period_dsp_lbl_display_position);
   period_dsp_lbl.setConstantString(constants::period_dsp_lbl_str);
 
-  Standalone::DisplayLabel& on_dsp_lbl = standalone_interface_.createDisplayLabel();
+  Standalone::DisplayLabel & on_dsp_lbl = standalone_interface_.createDisplayLabel();
   on_dsp_lbl.setDisplayPosition(constants::on_dsp_lbl_display_position);
   on_dsp_lbl.setConstantString(constants::on_dsp_lbl_str);
 
-  Standalone::DisplayLabel& count_dsp_lbl = standalone_interface_.createDisplayLabel();
+  Standalone::DisplayLabel & count_dsp_lbl = standalone_interface_.createDisplayLabel();
   count_dsp_lbl.setDisplayPosition(constants::count_dsp_lbl_display_position);
   count_dsp_lbl.setConstantString(constants::count_dsp_lbl_str);
 
@@ -218,7 +218,7 @@ void Controller::setup()
   power_int_var_ptr_->trimDisplayWidthUsingRange();
   power_int_var_ptr_->setValue(constants::display_power_default);
 
-  Standalone::InteractiveVariable& inc_int_var = standalone_interface_.createIncrementVariable(constants::inc_width_max);
+  Standalone::InteractiveVariable & inc_int_var = standalone_interface_.createIncrementVariable(constants::inc_width_max);
   inc_int_var.setDisplayPosition(constants::inc_int_var_display_position);
 
   chnl_int_var_ptr_ = &(standalone_interface_.createInteractiveVariable());
@@ -328,7 +328,7 @@ void Controller::update()
   standalone_interface_.update();
 }
 
-ModularDevice::ModularServer& Controller::getModularServer()
+ModularDevice::ModularServer & Controller::getModularServer()
 {
   return modular_server_;
 }

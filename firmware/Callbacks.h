@@ -58,7 +58,7 @@ void startPwmFrequencyDutyCycleCallback();
 
 void stopPulseWaveCallback();
 
-uint32_t arrayToChannels(ArduinoJson::JsonArray& channels_array);
+uint32_t arrayToChannels(ArduinoJson::JsonArray & channels_array);
 
 
 // Standalone Callbacks

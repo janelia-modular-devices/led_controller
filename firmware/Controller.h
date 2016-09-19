@@ -20,7 +20,7 @@ public:
   Controller();
   void setup();
   void update();
-  ModularDevice::ModularServer& getModularServer();
+  ModularDevice::ModularServer & getModularServer();
 
   void enableChannel(uint8_t channel);
   void disableChannel(uint8_t channel);
@@ -50,14 +50,14 @@ private:
   Standalone::DisplayVariable display_variables_[constants::DISPLAY_VARIABLE_COUNT_MAX];
   Standalone::InteractiveVariable interactive_variables_[constants::INTERACTIVE_VARIABLE_COUNT_MAX];
 
-  Standalone::InteractiveVariable *channel_int_var_ptr_;
-  Standalone::InteractiveVariable *power_int_var_ptr_;
+  Standalone::InteractiveVariable * channel_int_var_ptr_;
+  Standalone::InteractiveVariable * power_int_var_ptr_;
 
-  Standalone::InteractiveVariable *chnl_int_var_ptr_;
-  Standalone::InteractiveVariable *pwr_int_var_ptr_;
-  Standalone::InteractiveVariable *period_int_var_ptr_;
-  Standalone::InteractiveVariable *on_int_var_ptr_;
-  Standalone::InteractiveVariable *count_int_var_ptr_;
+  Standalone::InteractiveVariable * chnl_int_var_ptr_;
+  Standalone::InteractiveVariable * pwr_int_var_ptr_;
+  Standalone::InteractiveVariable * period_int_var_ptr_;
+  Standalone::InteractiveVariable * on_int_var_ptr_;
+  Standalone::InteractiveVariable * count_int_var_ptr_;
 
   uint8_t powers_[constants::CHANNEL_COUNT];
 };
