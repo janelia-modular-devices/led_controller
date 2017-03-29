@@ -1,4 +1,4 @@
-#led_controller
+# led_controller
 
 Authors:
 
@@ -11,13 +11,3 @@ License:
 ##More Detailed Help on Installation and Usage
 
 [modular-devices](https://github.com/janelia-modular-devices/modular-devices)
-
-##Device Information
-
-```json
-```
-
-##Verbose Device Information
-
-```json
-```
